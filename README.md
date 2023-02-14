@@ -6,10 +6,10 @@
 
 
 <H1>Features</H1>
- * A signup screen to create and register a user and a sign in screen to login. <br>
- * Home screen with a slider button which is used to mark the attendance which then get stored in firestore database. <br>
+ * Email Authentication <br>
+ * Home screen with a slider action button which is used to mark the attendance which then get stored in firestore database. <br>
  * Calendar screen where user can check their own records of attendance. <br>
- * A profile page of user to store user information to the data. <br>
+ * A profile page to store user information to the database. <br>
 
 
 
