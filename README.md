@@ -2,6 +2,8 @@
 
 
 > A simple attendance app created using flutter and firebase where the user check in and check out time gets stored in firestore database.<br>
+LOGIN CREDENTIALS ARE BELOW-<br>
+> **ID- A123456 || PASSWORD- 12345678**
 
 
 
@@ -24,6 +26,7 @@
 
 
 <H1>Todo</H1>
+* Sign up screen to register new users
 * Marking attendance by scanning a QR code.<br>
 * Stores the location from where the user checked in.<br>
 * User can upload a profile photo<br>
