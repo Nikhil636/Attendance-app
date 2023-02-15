@@ -1,16 +1,15 @@
 import 'package:attendance/Home.dart';
+import 'package:attendance/src/features/authentication/presentation/signup/signup_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class Loginscreen extends StatefulWidget {
-  const Loginscreen({Key? key}) : super(key: key);
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({Key? key}) : super(key: key);
 
   @override
-  State<Loginscreen> createState() => _LoginscreenState();
+  State<LoginScreen> createState() => _LoginScreenState();
 }
 
 TextEditingController idController = TextEditingController();
@@ -18,7 +17,7 @@ TextEditingController passController = TextEditingController();
 double screenh = 0;
 double screenw = 0;
 
-class _LoginscreenState extends State<Loginscreen> {
+class _LoginScreenState extends State<LoginScreen> {
   late SharedPreferences sharedPreferences;
   @override
   Widget build(BuildContext context) {
@@ -27,12 +26,13 @@ class _LoginscreenState extends State<Loginscreen> {
     screenh = MediaQuery.of(context).size.height;
     screenw = MediaQuery.of(context).size.width;
     return Scaffold(
-        resizeToAvoidBottomInset: false,
-        body: Column(children: [
+      resizeToAvoidBottomInset: false,
+      body: Column(
+        children: [
           isKeyboardVisible
               ? const SizedBox(height: 35)
               : Container(
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     color: Color.fromRGBO(2, 64, 116, 1),
                     borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(60),
@@ -42,20 +42,20 @@ class _LoginscreenState extends State<Loginscreen> {
                   width: screenw,
                   child: Center(
                     child: Padding(
-                      padding: EdgeInsets.all(60),
+                      padding: const EdgeInsets.all(60),
                       child: Container(
                           // height: screenh / 1.5,
                           // width: screenw / 1.5,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                               image: DecorationImage(
                                   image:
                                       AssetImage("assets/images/login.png")))),
                     ),
                   )),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
-          Text(
+          const Text(
             "LOGIN",
             style: TextStyle(
                 fontSize: 22,
@@ -69,7 +69,7 @@ class _LoginscreenState extends State<Loginscreen> {
               children: [
                 fieldTitle("Employee ID"),
                 customField("Enter your Employee ID", idController, false),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 fieldTitle("Password"),
@@ -105,7 +105,7 @@ class _LoginscreenState extends State<Loginscreen> {
                             Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => Homescreen()));
+                                    builder: (context) => const Homescreen()));
                           });
                         } else {
                           ScaffoldMessenger.of(context)
@@ -137,9 +137,9 @@ class _LoginscreenState extends State<Loginscreen> {
                     height: 60,
                     width: screenw,
                     margin: EdgeInsets.only(top: screenh / 40),
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       color: Color.fromRGBO(2, 64, 116, 1),
-                      borderRadius: const BorderRadius.all(Radius.circular(30)),
+                      borderRadius: BorderRadius.all(Radius.circular(30)),
                     ),
                     child: Center(
                       child: Text(
@@ -156,8 +156,37 @@ class _LoginscreenState extends State<Loginscreen> {
                 ),
               ],
             ),
+          ),
+          const Spacer(),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Flexible(
+                child: GestureDetector(
+                  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const SignUpScreen(),
+                    ),
+                  ),
+                  child: const Text(
+                    "New User? Sign Up",
+                    style: TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: "KdaMThmorPro",
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: screenh / 70,
           )
-        ]));
+        ],
+      ),
+    );
   }
 }
 
@@ -178,7 +207,7 @@ Widget customField(
     String hint, TextEditingController controller, bool obscure) {
   return Container(
     width: screenw / 1.1,
-    margin: EdgeInsets.only(bottom: 12),
+    margin: const EdgeInsets.only(bottom: 12),
     decoration: const BoxDecoration(
       color: Colors.white,
       borderRadius: BorderRadius.all(Radius.circular(12)),
@@ -192,7 +221,7 @@ Widget customField(
     ),
     child: Row(
       children: [
-        Container(
+        SizedBox(
           width: screenw / 6,
           child: Icon(
             Icons.person,

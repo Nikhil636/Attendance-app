@@ -1,17 +1,25 @@
-import 'package:attendance/Login.dart';
+import 'package:attendance/src/features/authentication/presentation/login/Login.dart';
 import 'package:attendance/usert.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:month_year_picker/month_year_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 import 'Home.dart';
+import 'firebase_options.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-
-  runApp(const MyApp());
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(
+    const ProviderScope(
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -19,12 +27,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const KeyboardVisibilityProvider(
+      home: KeyboardVisibilityProvider(
         child: AuthCheck(),
       ),
-      localizationsDelegates: const [
+      localizationsDelegates: [
         MonthYearPickerLocalizations.delegate,
       ],
     );
@@ -35,17 +43,16 @@ class AuthCheck extends StatefulWidget {
   const AuthCheck({Key? key}) : super(key: key);
 
   @override
-  _AuthCheckState createState() => _AuthCheckState();
+  AuthCheckState createState() => AuthCheckState();
 }
 
-class _AuthCheckState extends State<AuthCheck> {
+class AuthCheckState extends State<AuthCheck> {
   bool userAvailable = false;
   late SharedPreferences sharedPreferences;
 
   @override
   void initState() {
     super.initState();
-
     _getCurrentUser();
   }
 
@@ -68,6 +75,6 @@ class _AuthCheckState extends State<AuthCheck> {
 
   @override
   Widget build(BuildContext context) {
-    return userAvailable ? const Homescreen() : const Loginscreen();
+    return userAvailable ? const Homescreen() : const LoginScreen();
   }
 }
