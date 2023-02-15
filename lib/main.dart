@@ -19,12 +19,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const KeyboardVisibilityProvider(
+      home: KeyboardVisibilityProvider(
         child: AuthCheck(),
       ),
-      localizationsDelegates: const [
+      localizationsDelegates: [
         MonthYearPickerLocalizations.delegate,
       ],
     );

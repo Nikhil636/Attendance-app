@@ -1,5 +1,6 @@
 import 'package:attendance/Home.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -20,6 +21,24 @@ double screenw = 0;
 
 class _LoginscreenState extends State<Loginscreen> {
   late SharedPreferences sharedPreferences;
+
+  Future<void> passwordReset(String email) async {
+    try {
+      FirebaseAuth _auth = FirebaseAuth.instance;
+      if (email == "") {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text("Please enter the email ID"),
+        ));
+      } else {
+        await _auth.sendPasswordResetEmail(email: email);
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text("Entered email is not registered"),
+      ));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final bool isKeyboardVisible =
@@ -32,7 +51,7 @@ class _LoginscreenState extends State<Loginscreen> {
           isKeyboardVisible
               ? const SizedBox(height: 35)
               : Container(
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     color: Color.fromRGBO(2, 64, 116, 1),
                     borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(60),
@@ -44,18 +63,21 @@ class _LoginscreenState extends State<Loginscreen> {
                     child: Padding(
                       padding: EdgeInsets.all(60),
                       child: Container(
-                          // height: screenh / 1.5,
-                          // width: screenw / 1.5,
-                          decoration: BoxDecoration(
-                              image: DecorationImage(
-                                  image:
-                                      AssetImage("assets/images/login.png")))),
+                        // height: screenh / 1.5,
+                        // width: screenw / 1.5,
+                        decoration: const BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage("assets/images/login.png"),
+                          ),
+                        ),
+                      ),
                     ),
-                  )),
-          SizedBox(
+                  ),
+                ),
+          const SizedBox(
             height: 20,
           ),
-          Text(
+          const Text(
             "LOGIN",
             style: TextStyle(
                 fontSize: 22,
@@ -69,7 +91,7 @@ class _LoginscreenState extends State<Loginscreen> {
               children: [
                 fieldTitle("Employee ID"),
                 customField("Enter your Employee ID", idController, false),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 fieldTitle("Password"),
@@ -105,7 +127,7 @@ class _LoginscreenState extends State<Loginscreen> {
                             Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => Homescreen()));
+                                    builder: (context) => const Homescreen()));
                           });
                         } else {
                           ScaffoldMessenger.of(context)
@@ -126,7 +148,6 @@ class _LoginscreenState extends State<Loginscreen> {
                             error = "Error occurred!";
                           });
                         }
-
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                           content: Text(error),
                         ));
@@ -137,9 +158,9 @@ class _LoginscreenState extends State<Loginscreen> {
                     height: 60,
                     width: screenw,
                     margin: EdgeInsets.only(top: screenh / 40),
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       color: Color.fromRGBO(2, 64, 116, 1),
-                      borderRadius: const BorderRadius.all(Radius.circular(30)),
+                      borderRadius: BorderRadius.all(Radius.circular(30)),
                     ),
                     child: Center(
                       child: Text(
@@ -154,6 +175,15 @@ class _LoginscreenState extends State<Loginscreen> {
                     ),
                   ),
                 ),
+                const SizedBox(
+                  height: 20,
+                ),
+                InkWell(
+                  onTap: () {
+                    passwordReset(idController.text.trim());
+                  },
+                  child: const Text("Forgot Password"),
+                )
               ],
             ),
           )
@@ -178,7 +208,7 @@ Widget customField(
     String hint, TextEditingController controller, bool obscure) {
   return Container(
     width: screenw / 1.1,
-    margin: EdgeInsets.only(bottom: 12),
+    margin: const EdgeInsets.only(bottom: 12),
     decoration: const BoxDecoration(
       color: Colors.white,
       borderRadius: BorderRadius.all(Radius.circular(12)),
@@ -192,7 +222,7 @@ Widget customField(
     ),
     child: Row(
       children: [
-        Container(
+        SizedBox(
           width: screenw / 6,
           child: Icon(
             Icons.person,

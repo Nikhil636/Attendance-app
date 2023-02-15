@@ -139,8 +139,8 @@ class _HomescreenState extends State<Homescreen> {
                                     margin: const EdgeInsets.only(top: 6),
                                     height: 3,
                                     width: 22,
-                                    decoration: BoxDecoration(
-                                      borderRadius: const BorderRadius.all(
+                                    decoration: const BoxDecoration(
+                                      borderRadius: BorderRadius.all(
                                           Radius.circular(40)),
                                       color: Color.fromRGBO(2, 64, 116, 1),
                                     ),
