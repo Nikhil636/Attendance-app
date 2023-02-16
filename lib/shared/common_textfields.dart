@@ -31,7 +31,7 @@ class NameFormField extends StatelessWidget {
       textInputAction: textInputAction ?? TextInputAction.next,
       onFieldSubmitted: onFieldSubmitted,
       inputFormatters: [
-        FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z]')),
+        FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z\s]')),
       ],
       autofillHints: const [AutofillHints.name],
       autocorrect: true,

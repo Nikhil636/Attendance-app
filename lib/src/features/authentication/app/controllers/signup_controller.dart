@@ -4,7 +4,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../providers/auth_providers.dart';
 
-
 class SignUpController extends StateNotifier<SignUpState> {
   SignUpController(this.ref) : super(const SignUpState.initial());
 
