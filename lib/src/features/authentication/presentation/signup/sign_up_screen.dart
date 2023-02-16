@@ -39,6 +39,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
         success: () {
           if (!mounted) return;
           LoaderDialog.hideDialog(context);
+          //TODO: Navigate to a specific screen after successful sign up
           ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(content: Text("Sign up successful")));
           return null;
