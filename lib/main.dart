@@ -1,17 +1,25 @@
-import 'package:attendance/Login.dart';
+import 'package:attendance/firebase_options.dart';
+import 'package:attendance/src/features/authentication/presentation/login/Login.dart';
+import 'package:attendance/src/features/home/Home.dart';
+import 'package:attendance/src/providers/provider_observer.dart';
 import 'package:attendance/usert.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:month_year_picker/month_year_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'Home.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-
-  runApp(const MyApp());
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  runApp(
+    ProviderScope(
+      key: const Key('RiverpodProviderScope'),
+      observers: [ProviderLogger()],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -68,6 +76,6 @@ class _AuthCheckState extends State<AuthCheck> {
 
   @override
   Widget build(BuildContext context) {
-    return userAvailable ? const Homescreen() : const Loginscreen();
+    return userAvailable ? const Homescreen() : const LoginScreen();
   }
 }
