@@ -1,11 +1,9 @@
 import 'dart:async';
 
-import 'package:attendance/Home.dart';
+import 'package:attendance/src/features/home/Home.dart';
 import 'package:attendance/usert.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:intl/intl.dart';
 import 'package:slide_to_act/slide_to_act.dart';
 
@@ -73,7 +71,7 @@ class _todayState extends State<today> {
               Container(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  "Employee " + User.employeeId,
+                  "Employee ${User.employeeId}",
                   style: TextStyle(
                     fontFamily: "AnekDevanagari",
                     fontSize: screenw / 18,
@@ -164,7 +162,7 @@ class _todayState extends State<today> {
                     text: TextSpan(
                       text: DateTime.now().day.toString(),
                       style: TextStyle(
-                        color: Color.fromRGBO(2, 64, 116, 1),
+                        color: const Color.fromRGBO(2, 64, 116, 1),
                         fontSize: screenw / 18,
                         fontFamily: "AnekDevanagari",
                       ),
@@ -198,7 +196,7 @@ class _todayState extends State<today> {
               ),
               checkOut == "--/--"
                   ? Container(
-                      margin: EdgeInsets.only(top: 24),
+                      margin: const EdgeInsets.only(top: 24),
                       child: Builder(builder: (context) {
                         final GlobalKey<SlideActionState> key = GlobalKey();
 
@@ -212,10 +210,10 @@ class _todayState extends State<today> {
                               fontFamily: "AnekDevanagari",
                             ),
                             outerColor: Colors.white,
-                            innerColor: Color.fromRGBO(2, 64, 116, 1),
+                            innerColor: const Color.fromRGBO(2, 64, 116, 1),
                             key: key,
                             onSubmit: () async {
-                              Timer(Duration(seconds: 1), () {
+                              Timer(const Duration(seconds: 1), () {
                                 key.currentState!.reset();
                               });
 
