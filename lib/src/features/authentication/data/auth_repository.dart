@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
@@ -45,7 +44,7 @@ class AuthRepository {
     try {
       UserCredential user = await _firebaseAuth.createUserWithEmailAndPassword(
           email: email, password: password);
-      log(jsonEncode(user.user));
+      log(user.user?.uid ?? 'No user id found');
       return right(unit);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {

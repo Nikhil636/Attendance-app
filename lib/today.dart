@@ -1,11 +1,9 @@
 import 'dart:async';
 
-import 'package:attendance/Home.dart';
+import 'package:attendance/src/features/home/Home.dart';
 import 'package:attendance/usert.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:intl/intl.dart';
 import 'package:slide_to_act/slide_to_act.dart';
 

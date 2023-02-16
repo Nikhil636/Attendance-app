@@ -1,5 +1,5 @@
-import 'package:attendance/Home.dart';
-import 'package:attendance/src/features/authentication/presentation/signup/signup_screen.dart';
+import 'package:attendance/src/features/home/Home.dart';
+import 'package:attendance/src/features/authentication/presentation/signup/sign_up_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';

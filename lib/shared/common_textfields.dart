@@ -155,9 +155,11 @@ class PasswordFormField extends ConsumerWidget {
   final TextInputAction? textInputAction;
   final bool? isConfirmPassword;
   final String? Function(String?)? validator;
+  final void Function()? onEditingComplete;
   final ValueChanged<String>? onFieldSubmitted;
-  const PasswordFormField({
+  const PasswordFormField( {
     super.key,
+    this.onEditingComplete,
     required this.textEditingController,
     this.onChanged,
     this.textInputAction = TextInputAction.next,
@@ -172,6 +174,7 @@ class PasswordFormField extends ConsumerWidget {
     return TextFormField(
       controller: textEditingController,
       onChanged: onChanged,
+      onEditingComplete: onEditingComplete,
       onFieldSubmitted: onFieldSubmitted,
       validator:
           validator ?? (value) => TextFieldValidators.passwordValidator(value),

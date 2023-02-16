@@ -8,7 +8,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:month_year_picker/month_year_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'Home.dart';
+import 'src/features/home/Home.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {

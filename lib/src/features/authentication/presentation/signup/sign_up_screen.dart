@@ -88,6 +88,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                   key: _formKey,
                   child: Scrollbar(
                     child: ListView(
+                      physics: const BouncingScrollPhysics(),
                       controller: listController,
                       padding: const EdgeInsets.symmetric(
                           horizontal: 20, vertical: 20),
@@ -117,11 +118,16 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                           textEditingController: confirmPasswordController,
                           isConfirmPassword: true,
                           textInputAction: TextInputAction.done,
-                          validator: (p0) {
-                            if (p0 != passwordController.text) {
+                          onEditingComplete: () async {
+                            FocusScope.of(context).unfocus();
+                            await register(emailController.text.trim(),
+                                passwordController.text.trim(), listController);
+                          },
+                          validator: (val) {
+                            if (val != passwordController.text) {
                               return "Passwords don't match";
                             }
-                            return TextFieldValidators.passwordValidator(p0);
+                            return TextFieldValidators.passwordValidator(val);
                           },
                         ),
                         const SizedBox(height: 40),

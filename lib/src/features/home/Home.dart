@@ -4,8 +4,6 @@ import 'package:attendance/today.dart';
 import 'package:attendance/usert.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Homescreen extends StatefulWidget {
@@ -81,10 +79,10 @@ class _HomescreenState extends State<Homescreen> {
     return Scaffold(
       body: IndexedStack(
         index: currentIndex,
-        children: [
-          new calendar(),
-          new today(),
-          new profile(),
+        children: const [
+          calendar(),
+          today(),
+          profile(),
         ],
       ),
       bottomNavigationBar: Container(
@@ -130,7 +128,7 @@ class _HomescreenState extends State<Homescreen> {
                             Icon(
                               navigationIcons[i],
                               color: i == currentIndex
-                                  ? Color.fromRGBO(2, 64, 116, 1)
+                                  ? const Color.fromRGBO(2, 64, 116, 1)
                                   : Colors.black54,
                               size: i == currentIndex ? 30 : 26,
                             ),
@@ -139,9 +137,9 @@ class _HomescreenState extends State<Homescreen> {
                                     margin: const EdgeInsets.only(top: 6),
                                     height: 3,
                                     width: 22,
-                                    decoration: BoxDecoration(
-                                      borderRadius: const BorderRadius.all(
-                                          Radius.circular(40)),
+                                    decoration: const BoxDecoration(
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(40)),
                                       color: Color.fromRGBO(2, 64, 116, 1),
                                     ),
                                   )
