@@ -2,9 +2,7 @@
 ## What is this 𝑨𝒕𝒕𝒆𝒏𝒅𝒂𝒏𝒄𝒆 𝑨𝒑𝒑?
 This is an attendance app created using `flutter` and `firebase` where the user's check-in and check-out time gets stored in firebase database.
 
-> 
-🔑*LOGIN CREDENTIALS ARE BELOW*<br>
-> **ID- A123456 || PASSWORD- 12345678**
+
 
 
 ## <h1>🧰 Features:</h1>
