@@ -38,6 +38,7 @@ dependencies:
   flutter_keyboard_visibility: ^5.4.0
   cloud_firestore: ^4.1.0
   shared_preferences: ^2.0.15
+  firebase_auth: ^4.2.6
   font_awesome_flutter: ^10.2.1
   slide_to_act: ^2.0.1
   date_format: ^2.0.7

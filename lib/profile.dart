@@ -97,7 +97,7 @@ class _profileState extends State<profile> {
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
-                  color: Color.fromRGBO(2, 64, 116, 1),
+                  color: const Color.fromRGBO(2, 64, 116, 1),
                 ),
                 child: Center(
                   child: User.profilePicLink == " "
@@ -143,14 +143,14 @@ class _profileState extends State<profile> {
                           builder: (context, child) {
                             return Theme(
                               data: Theme.of(context).copyWith(
-                                colorScheme: ColorScheme.light(
+                                colorScheme: const ColorScheme.light(
                                   primary: Color.fromRGBO(2, 64, 116, 1),
                                   secondary: Color.fromRGBO(2, 64, 116, 1),
                                   onSecondary: Colors.white,
                                 ),
                                 textButtonTheme: TextButtonThemeData(
                                   style: TextButton.styleFrom(
-                                    primary: Color.fromRGBO(2, 64, 116, 1),
+                                    primary: const Color.fromRGBO(2, 64, 116, 1),
                                   ),
                                 ),
                                 textTheme: const TextTheme(
@@ -262,7 +262,7 @@ class _profileState extends State<profile> {
             ),
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 8,
         ),
         Container(
@@ -307,7 +307,7 @@ class _profileState extends State<profile> {
             ),
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 8,
         ),
         Container(
