@@ -1,4 +1,5 @@
 import 'package:attendance/src/features/authentication/presentation/login/Login.dart';
+import 'package:attendance/src/providers/provider_observer.dart';
 import 'package:attendance/usert.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -16,8 +17,10 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   runApp(
-    const ProviderScope(
-      child: MyApp(),
+    ProviderScope(
+      key: const Key('RiverpodProviderScope'),
+      observers: [ProviderLogger()],
+      child: const MyApp(),
     ),
   );
 }
