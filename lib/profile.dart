@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:path/path.dart' as path;
-import 'package:attendance/src/features/home/Home.dart';
+import 'package:attendance/Home.dart';
 import 'package:attendance/usert.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';

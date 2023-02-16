@@ -1,16 +1,16 @@
-import 'package:attendance/src/features/home/Home.dart';
-import 'package:attendance/src/features/authentication/presentation/signup/sign_up_screen.dart';
+import 'package:attendance/Home.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/src/foundation/key.dart';
+import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class Loginscreen extends StatefulWidget {
+  const Loginscreen({Key? key}) : super(key: key);
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<Loginscreen> createState() => _LoginscreenState();
 }
 
 TextEditingController idController = TextEditingController();
@@ -18,7 +18,7 @@ TextEditingController passController = TextEditingController();
 double screenh = 0;
 double screenw = 0;
 
-class _LoginScreenState extends State<LoginScreen> {
+class _LoginscreenState extends State<Loginscreen> {
   late SharedPreferences sharedPreferences;
   @override
   Widget build(BuildContext context) {
@@ -27,13 +27,12 @@ class _LoginScreenState extends State<LoginScreen> {
     screenh = MediaQuery.of(context).size.height;
     screenw = MediaQuery.of(context).size.width;
     return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: Column(
-        children: [
+        resizeToAvoidBottomInset: false,
+        body: Column(children: [
           isKeyboardVisible
               ? const SizedBox(height: 35)
               : Container(
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                     color: Color.fromRGBO(2, 64, 116, 1),
                     borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(60),
@@ -43,20 +42,20 @@ class _LoginScreenState extends State<LoginScreen> {
                   width: screenw,
                   child: Center(
                     child: Padding(
-                      padding: const EdgeInsets.all(60),
+                      padding: EdgeInsets.all(60),
                       child: Container(
                           // height: screenh / 1.5,
                           // width: screenw / 1.5,
-                          decoration: const BoxDecoration(
+                          decoration: BoxDecoration(
                               image: DecorationImage(
                                   image:
                                       AssetImage("assets/images/login.png")))),
                     ),
                   )),
-          const SizedBox(
+          SizedBox(
             height: 20,
           ),
-          const Text(
+          Text(
             "LOGIN",
             style: TextStyle(
                 fontSize: 22,
@@ -70,7 +69,7 @@ class _LoginScreenState extends State<LoginScreen> {
               children: [
                 fieldTitle("Employee ID"),
                 customField("Enter your Employee ID", idController, false),
-                const SizedBox(
+                SizedBox(
                   height: 10,
                 ),
                 fieldTitle("Password"),
@@ -106,7 +105,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => const Homescreen()));
+                                    builder: (context) => Homescreen()));
                           });
                         } else {
                           ScaffoldMessenger.of(context)
@@ -138,9 +137,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     height: 60,
                     width: screenw,
                     margin: EdgeInsets.only(top: screenh / 40),
-                    decoration: const BoxDecoration(
+                    decoration: BoxDecoration(
                       color: Color.fromRGBO(2, 64, 116, 1),
-                      borderRadius: BorderRadius.all(Radius.circular(30)),
+                      borderRadius: const BorderRadius.all(Radius.circular(30)),
                     ),
                     child: Center(
                       child: Text(
@@ -157,41 +156,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ],
             ),
-          ),
-          const Spacer(),
-          Text.rich(
-            TextSpan(
-              text: "New User ? ",
-              style: const TextStyle(
-                fontFamily: "KdaMThmorPro",
-                color: Colors.black,
-              ),
-              children: [
-                TextSpan(
-                  text: "Sign Up",
-                  recognizer: TapGestureRecognizer()
-                    ..onTap = () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const SignUpScreen()),
-                        ),
-                  style: const TextStyle(
-                    fontFamily: "KdaMThmorPro",
-                    color: Colors.blue,
-                  ),
-                ),
-              ],
-            ),
-            maxLines: 1,
-            textAlign: TextAlign.center,
-            overflow: TextOverflow.ellipsis,
-          ),
-          SizedBox(
-            height: screenh / 70,
           )
-        ],
-      ),
-    );
+        ]));
   }
 }
 
@@ -212,7 +178,7 @@ Widget customField(
     String hint, TextEditingController controller, bool obscure) {
   return Container(
     width: screenw / 1.1,
-    margin: const EdgeInsets.only(bottom: 12),
+    margin: EdgeInsets.only(bottom: 12),
     decoration: const BoxDecoration(
       color: Colors.white,
       borderRadius: BorderRadius.all(Radius.circular(12)),
@@ -226,7 +192,7 @@ Widget customField(
     ),
     child: Row(
       children: [
-        SizedBox(
+        Container(
           width: screenw / 6,
           child: Icon(
             Icons.person,
