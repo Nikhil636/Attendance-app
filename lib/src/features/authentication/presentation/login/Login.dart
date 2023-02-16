@@ -1,6 +1,7 @@
 import 'package:attendance/Home.dart';
 import 'package:attendance/src/features/authentication/presentation/signup/signup_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -158,28 +159,32 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
           ),
           const Spacer(),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Flexible(
-                child: GestureDetector(
-                  onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const SignUpScreen(),
-                    ),
-                  ),
-                  child: const Text(
-                    "New User? Sign Up",
-                    style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: "KdaMThmorPro",
-                    ),
+          Text.rich(
+            TextSpan(
+              text: "New User ? ",
+              style: const TextStyle(
+                fontFamily: "KdaMThmorPro",
+                color: Colors.black,
+              ),
+              children: [
+                TextSpan(
+                  text: "Sign Up",
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const SignUpScreen()),
+                        ),
+                  style: const TextStyle(
+                    fontFamily: "KdaMThmorPro",
+                    color: Colors.blue,
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
+            maxLines: 1,
+            textAlign: TextAlign.center,
+            overflow: TextOverflow.ellipsis,
           ),
           SizedBox(
             height: screenh / 70,

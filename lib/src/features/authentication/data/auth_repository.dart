@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -40,8 +43,9 @@ class AuthRepository {
 
   Future<SignUpEither> signUp(String email, String password) async {
     try {
-      await _firebaseAuth.createUserWithEmailAndPassword(
+      UserCredential user = await _firebaseAuth.createUserWithEmailAndPassword(
           email: email, password: password);
+      log(jsonEncode(user.user));
       return right(unit);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {

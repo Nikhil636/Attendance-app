@@ -1,6 +1,7 @@
 import 'package:attendance/shared/common_textfields.dart';
 import 'package:attendance/shared/loader_dialog.dart';
 import 'package:attendance/src/utils/textfield_validators.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -26,7 +27,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final listController = useScrollController();
+    final listController = useScrollController(initialScrollOffset: 100);
     final fullNameController = useTextEditingController();
     final emailController = useTextEditingController();
     final passwordController = useTextEditingController();
@@ -64,7 +65,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
           child: Column(
             children: [
               SizedBox(
-                height: size.height / 3,
+                height: size.height / 3.3,
                 width: double.infinity,
                 child: DecoratedBox(
                   decoration: const BoxDecoration(
@@ -165,6 +166,30 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                   ),
                 ),
               ),
+              const SizedBox(height: 1),
+              Text.rich(
+                TextSpan(
+                  text: "Already have an account? ",
+                  style: const TextStyle(
+                    fontFamily: "KdaMThmorPro",
+                    color: Colors.black,
+                  ),
+                  children: [
+                    TextSpan(
+                      text: "Login",
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () => Navigator.of(context).maybePop(),
+                      style: const TextStyle(
+                        fontFamily: "KdaMThmorPro",
+                        color: Colors.blue,
+                      ),
+                    ),
+                  ],
+                ),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+              const SizedBox(height: 10)
             ],
           ),
         ),
