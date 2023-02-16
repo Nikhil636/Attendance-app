@@ -10,12 +10,15 @@ class LoaderDialog {
         return WillPopScope(
           onWillPop: () => Future.value(false),
           child: const AlertDialog(
-            contentPadding: EdgeInsets.all(8),
+            elevation: 0,
             content: SizedBox(
-              height: 100,
-              width: 100,
+              height: 60,
+              width: 60,
               child: Center(
-                child: CircularProgressIndicator.adaptive(),
+                child: CircularProgressIndicator.adaptive(
+                  valueColor: AlwaysStoppedAnimation<Color>(
+                      Color.fromRGBO(2, 64, 116, 1)),
+                ),
               ),
             ),
           ),
@@ -23,8 +26,11 @@ class LoaderDialog {
       },
     );
   }
+
   //hide the loading dialog
   static void hideDialog(BuildContext context) {
-    Navigator.of(context).maybePop();
+    if (Navigator.canPop(context)) {
+      Navigator.of(context).pop();
+    }
   }
 }

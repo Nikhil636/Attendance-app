@@ -28,6 +28,7 @@ class AuthRepository {
 
   Future<SignOutEither> signOut() async {
     try {
+      //Provision to run multiple futures later
       Future.wait([
         _firebaseAuth.signOut(),
       ]);
@@ -39,9 +40,8 @@ class AuthRepository {
 
   Future<SignUpEither> signUp(String email, String password) async {
     try {
-      // await _firebaseAuth.createUserWithEmailAndPassword(
-      //     email: email, password: password);
-      await Future.delayed(const Duration(seconds: 1), () {});
+      await _firebaseAuth.createUserWithEmailAndPassword(
+          email: email, password: password);
       return right(unit);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
