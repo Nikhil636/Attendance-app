@@ -1,11 +1,12 @@
-import 'package:attendance/shared/common_textfields.dart';
-import 'package:attendance/shared/loader_dialog.dart';
-import 'package:attendance/src/utils/textfield_validators.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../../../../shared/common_textfields.dart';
+import '../../../../../shared/loader_dialog.dart';
+import '../../../../app/constants/assets.gen.dart';
+import '../../../../utils/textfield_validators.dart';
 import '../../app/providers/auth_providers.dart';
 import '../../domain/state/sign_up_state.dart';
 
@@ -27,24 +28,27 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final listController = useScrollController(initialScrollOffset: 100);
-    final fullNameController = useTextEditingController();
-    final emailController = useTextEditingController();
-    final passwordController = useTextEditingController();
-    final confirmPasswordController = useTextEditingController();
+    TextTheme textTheme = Theme.of(context).textTheme;
+    ScrollController listController =
+        useScrollController(initialScrollOffset: 100);
+    TextEditingController fullNameController = useTextEditingController();
+    TextEditingController emailController = useTextEditingController();
+    TextEditingController passwordController = useTextEditingController();
+    TextEditingController confirmPasswordController =
+        useTextEditingController();
     Size size = MediaQuery.of(context).size;
     ref.listen<SignUpState>(
       signUpControllerProvider,
-      (prev, next) => next.maybeWhen(
+      (SignUpState? prev, SignUpState next) => next.maybeWhen(
         success: () {
           if (!mounted) return;
           LoaderDialog.hideDialog(context);
           //TODO: Navigate to a specific screen after successful sign up
           ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text("Sign up successful")));
+              const SnackBar(content: Text('Sign up successful')));
           return null;
         },
-        failure: (failure) {
+        failure: (String? failure) {
           if (!mounted) return;
           LoaderDialog.hideDialog(context);
           ScaffoldMessenger.of(context)
@@ -64,9 +68,9 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
         child: GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
           child: Column(
-            children: [
+            children: <Widget>[
               SizedBox(
-                height: size.height / 3.3,
+                height: size.height / 3.5,
                 width: double.infinity,
                 child: DecoratedBox(
                   decoration: const BoxDecoration(
@@ -79,7 +83,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                   child: FittedBox(
                     fit: BoxFit.fitHeight,
                     child: Image.asset(
-                      'assets/images/signup.png',
+                      Assets.images.signup.path,
                     ),
                   ),
                 ),
@@ -93,20 +97,18 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                       controller: listController,
                       padding: const EdgeInsets.symmetric(
                           horizontal: 20, vertical: 20),
-                      children: [
-                        const Text(
-                          "SIGN UP",
+                      children: <Widget>[
+                        Text(
+                          'SIGN UP',
                           textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontSize: 22,
-                              fontWeight: FontWeight.bold,
-                              fontFamily: "KdaMThmorPro"),
+                          style: textTheme.labelLarge
+                              ?.copyWith(fontSize: 22, color: Colors.black),
                         ),
-                        const SizedBox(height: 20),
+                        const SizedBox(height: 10),
                         NameFormField(
                           textEditingController: fullNameController,
                         ),
-                        const SizedBox(height: 20),
+                        const SizedBox(height: 10),
                         EmailFormField(
                           textEditingController: emailController,
                         ),
@@ -124,7 +126,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                             await register(emailController.text.trim(),
                                 passwordController.text.trim(), listController);
                           },
-                          validator: (val) {
+                          validator: (String? val) {
                             if (val != passwordController.text) {
                               return "Passwords don't match";
                             }
@@ -134,7 +136,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                         const SizedBox(height: 40),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
+                          children: <Widget>[
                             Expanded(
                               child: SizedBox(
                                 height: 60,
@@ -155,9 +157,8 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                                     ),
                                   ),
                                   child: Text(
-                                    "SIGN UP",
-                                    style: TextStyle(
-                                      fontFamily: "KdaMThmorPro",
+                                    'SIGN UP',
+                                    style: textTheme.labelMedium?.copyWith(
                                       fontSize: size.width / 26,
                                       color: Colors.white,
                                       letterSpacing: 2,
@@ -176,27 +177,23 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
               const SizedBox(height: 1),
               Text.rich(
                 TextSpan(
-                  text: "Already have an account? ",
-                  style: const TextStyle(
-                    fontFamily: "KdaMThmorPro",
-                    color: Colors.black,
-                  ),
-                  children: [
+                  text: 'Already have an account? ',
+                  style: textTheme.labelSmall
+                      ?.copyWith(color: Colors.black, fontSize: 12),
+                  children: <TextSpan>[
                     TextSpan(
-                      text: "Login",
+                      text: 'Login',
                       recognizer: TapGestureRecognizer()
                         ..onTap = () => Navigator.of(context).maybePop(),
-                      style: const TextStyle(
-                        fontFamily: "KdaMThmorPro",
-                        color: Colors.blue,
-                      ),
+                      style: textTheme.labelSmall
+                          ?.copyWith(color: Colors.blue, fontSize: 12),
                     ),
                   ],
                 ),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
-              const SizedBox(height: 10)
+              const SizedBox(height: 5)
             ],
           ),
         ),
@@ -207,7 +204,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
   Future<void> register(
       String email, String password, ScrollController controller) async {
     if (_formKey.currentState!.validate()) {
-      ref
+      await ref
           .read(signUpControllerProvider.notifier)
           .signUp(email: email, password: password);
       return;

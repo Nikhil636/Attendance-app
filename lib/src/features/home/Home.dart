@@ -1,10 +1,12 @@
-import 'package:attendance/calendar.dart';
-import 'package:attendance/profile.dart';
-import 'package:attendance/today.dart';
-import 'package:attendance/usert.dart';
+// ignore: file_names
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import 'calendar.dart';
+import 'profile.dart';
+import 'today.dart';
+import 'usert.dart';
 
 class Homescreen extends StatefulWidget {
   const Homescreen({Key? key}) : super(key: key);
@@ -17,8 +19,8 @@ double screenh = 0;
 double screenw = 0;
 int currentIndex = 1;
 String id = '';
-List<IconData> navigationIcons = [
-  FontAwesomeIcons.calendarAlt,
+List<IconData> navigationIcons = <IconData>[
+  FontAwesomeIcons.calendarDays,
   FontAwesomeIcons.check,
   FontAwesomeIcons.user,
 ];
@@ -33,40 +35,41 @@ class _HomescreenState extends State<Homescreen> {
     _getProfilePic();
   }
 
-  void _getCredentials() async {
+  Future<void> _getCredentials() async {
     try {
-      DocumentSnapshot doc = await FirebaseFirestore.instance
-          .collection("Employee")
-          .doc("Rf9LKIsunYRsAt9PcEA4")
+      DocumentSnapshot<Map<String, dynamic>> doc = await FirebaseFirestore
+          .instance
+          .collection('Employee')
+          .doc('Rf9LKIsunYRsAt9PcEA4')
           .get();
       setState(() {
-        User.canEdit = doc['canEdit'];
-        User.firstName = doc['firstName'];
-        User.lastName = doc['lastName'];
-        User.birthDate = doc['birthDate'];
-        User.address = doc['address'];
+        User.canEdit = doc['canEdit'] as bool;
+        User.firstName = doc['firstName'] as String;
+        User.lastName = doc['lastName'] as String;
+        User.birthDate = doc['birthDate'] as String;
+        User.address = doc['address'] as String;
       });
     } catch (e) {
       return;
     }
   }
 
-  void _getProfilePic() async {
-    DocumentSnapshot doc = await FirebaseFirestore.instance
-        .collection("Employee")
-        .doc("Rf9LKIsunYRsAt9PcEA4")
+  Future<void> _getProfilePic() async {
+    DocumentSnapshot<Map<String, dynamic>> doc = await FirebaseFirestore
+        .instance
+        .collection('Employee')
+        .doc('Rf9LKIsunYRsAt9PcEA4')
         .get();
     setState(() {
-      User.profilePicLink = doc['profilePic'];
+      User.profilePicLink = doc['profilePic'] as String;
     });
   }
 
-  void getId() async {
-    QuerySnapshot snap = await FirebaseFirestore.instance
+  Future<void> getId() async {
+    QuerySnapshot<Map<String, dynamic>> snap = await FirebaseFirestore.instance
         .collection('Employee')
         .where('Id', isEqualTo: User.employeeId)
         .get();
-
     setState(() {
       User.id = snap.docs[0].id;
     });
@@ -79,7 +82,7 @@ class _HomescreenState extends State<Homescreen> {
     return Scaffold(
       body: IndexedStack(
         index: currentIndex,
-        children: const [
+        children: const <Widget>[
           Calendar(),
           Today(),
           Profile(),
@@ -95,7 +98,7 @@ class _HomescreenState extends State<Homescreen> {
         decoration: const BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.all(Radius.circular(40)),
-          boxShadow: [
+          boxShadow: <BoxShadow>[
             BoxShadow(
               color: Colors.black26,
               blurRadius: 10,
@@ -108,7 +111,7 @@ class _HomescreenState extends State<Homescreen> {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+            children: <Widget>[
               for (int i = 0; i < navigationIcons.length; i++) ...<Expanded>{
                 Expanded(
                   child: GestureDetector(
@@ -124,7 +127,7 @@ class _HomescreenState extends State<Homescreen> {
                       child: Center(
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
+                          children: <Widget>[
                             Icon(
                               navigationIcons[i],
                               color: i == currentIndex

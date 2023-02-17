@@ -31,7 +31,7 @@ class AuthRepository {
   Future<SignOutEither> signOut() async {
     try {
       //Provision to run multiple futures later
-      Future.wait([
+      await Future.wait(<Future<void>>[
         _firebaseAuth.signOut(),
       ]);
       return right(unit);

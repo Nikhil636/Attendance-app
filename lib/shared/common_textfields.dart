@@ -1,8 +1,9 @@
-import 'package:attendance/src/features/authentication/app/providers/auth_providers.dart';
-import 'package:attendance/src/utils/textfield_validators.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+import '../src/features/authentication/app/providers/auth_providers.dart';
+import '../src/utils/textfield_validators.dart';
 
 class NameFormField extends StatelessWidget {
   final TextEditingController textEditingController;
@@ -30,13 +31,13 @@ class NameFormField extends StatelessWidget {
       autovalidateMode: autovalidateMode ?? AutovalidateMode.onUserInteraction,
       textInputAction: textInputAction ?? TextInputAction.next,
       onFieldSubmitted: onFieldSubmitted,
-      inputFormatters: [
+      inputFormatters: <FilteringTextInputFormatter>[
         FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z\s]')),
       ],
-      autofillHints: const [AutofillHints.name],
+      autofillHints: const <String>[AutofillHints.name],
       autocorrect: true,
       maxLength: 25,
-      validator: (value) => TextFieldValidators.nameValidator(value),
+      validator: TextFieldValidators.nameValidator,
       onChanged: onChanged,
       keyboardType: TextInputType.name,
       textCapitalization: TextCapitalization.words,
@@ -50,14 +51,6 @@ class NameFormField extends StatelessWidget {
         contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
         filled: true,
         fillColor: Colors.white,
-        labelStyle: const TextStyle(
-          fontWeight: FontWeight.w400,
-          fontFamily: "NexaBold",
-        ),
-        hintStyle: const TextStyle(
-          fontWeight: FontWeight.w200,
-          fontFamily: "NexaBold",
-        ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
           gapPadding: 10,
@@ -106,26 +99,20 @@ class EmailFormField extends StatelessWidget {
       autovalidateMode: autovalidateMode,
       textInputAction: TextInputAction.next,
       onFieldSubmitted: onFieldSubmitted,
-      validator: (value) => TextFieldValidators.emailValidator(value),
+      validator: TextFieldValidators.emailValidator,
       onChanged: onChanged,
-      autofillHints: const [AutofillHints.email],
+      autofillHints: const <String>[AutofillHints.email],
       keyboardType: TextInputType.emailAddress,
       textCapitalization: TextCapitalization.none,
       decoration: InputDecoration(
-        hintText: "Enter your Email",
+        hintText: 'Enter your Email',
         fillColor: Colors.white,
-        labelText: "Email",
+        labelText: 'Email',
         floatingLabelBehavior: FloatingLabelBehavior.auto,
         floatingLabelAlignment: FloatingLabelAlignment.start,
         prefixIcon: const Icon(Icons.email),
         contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
         filled: true,
-        labelStyle: const TextStyle(
-          fontWeight: FontWeight.w400,
-        ),
-        hintStyle: const TextStyle(
-          fontWeight: FontWeight.w200,
-        ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
           gapPadding: 10,
@@ -157,7 +144,7 @@ class PasswordFormField extends ConsumerWidget {
   final String? Function(String?)? validator;
   final void Function()? onEditingComplete;
   final ValueChanged<String>? onFieldSubmitted;
-  const PasswordFormField( {
+  const PasswordFormField({
     super.key,
     this.onEditingComplete,
     required this.textEditingController,
@@ -170,26 +157,25 @@ class PasswordFormField extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isVisible = ref.watch(passwordVisibiltyProvider);
+    bool isVisible = ref.watch(passwordVisibiltyProvider);
     return TextFormField(
       controller: textEditingController,
       onChanged: onChanged,
       onEditingComplete: onEditingComplete,
       onFieldSubmitted: onFieldSubmitted,
-      validator:
-          validator ?? (value) => TextFieldValidators.passwordValidator(value),
+      validator: validator ?? TextFieldValidators.passwordValidator,
       obscureText: isVisible,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       enableSuggestions: true,
       textInputAction: textInputAction,
       autocorrect: true,
       keyboardType: TextInputType.visiblePassword,
-      autofillHints: const [AutofillHints.password],
+      autofillHints: const <String>[AutofillHints.password],
       decoration: InputDecoration(
         hintText: isConfirmPassword ?? false
-            ? "Retype your password"
-            : "Enter your password",
-        labelText: isConfirmPassword ?? false ? "Confirm Password" : "Password",
+            ? 'Retype your password'
+            : 'Enter your password',
+        labelText: isConfirmPassword ?? false ? 'Confirm Password' : 'Password',
         floatingLabelBehavior: FloatingLabelBehavior.auto,
         floatingLabelAlignment: FloatingLabelAlignment.start,
         prefixIcon: const Icon(Icons.lock),
@@ -203,12 +189,6 @@ class PasswordFormField extends ConsumerWidget {
         filled: true,
         errorMaxLines: 2,
         fillColor: Colors.white,
-        labelStyle: const TextStyle(
-          fontWeight: FontWeight.w400,
-        ),
-        hintStyle: const TextStyle(
-          fontWeight: FontWeight.w200,
-        ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
           gapPadding: 10,

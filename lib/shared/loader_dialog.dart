@@ -8,7 +8,7 @@ class LoaderDialog {
       barrierDismissible: false,
       builder: (BuildContext context) {
         return WillPopScope(
-          onWillPop: () => Future.value(false),
+          onWillPop: () => Future<bool>.value(false),
           child: const AlertDialog(
             elevation: 0,
             content: SizedBox(

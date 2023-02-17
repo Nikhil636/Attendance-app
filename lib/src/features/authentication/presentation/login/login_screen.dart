@@ -1,10 +1,12 @@
-import 'package:attendance/src/features/home/Home.dart';
-import 'package:attendance/src/features/authentication/presentation/signup/sign_up_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../../../app/constants/assets.gen.dart';
+import '../../../home/home.dart';
+import '../signup/sign_up_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -22,14 +24,15 @@ class _LoginScreenState extends State<LoginScreen> {
   late SharedPreferences sharedPreferences;
   @override
   Widget build(BuildContext context) {
-    final bool isKeyboardVisible =
+    TextTheme textTheme = Theme.of(context).textTheme;
+    bool isKeyboardVisible =
         KeyboardVisibilityProvider.isKeyboardVisible(context);
     screenh = MediaQuery.of(context).size.height;
     screenw = MediaQuery.of(context).size.width;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Column(
-        children: [
+        children: <Widget>[
           isKeyboardVisible
               ? const SizedBox(height: 35)
               : Container(
@@ -45,36 +48,34 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: Padding(
                       padding: const EdgeInsets.all(60),
                       child: Container(
-                          // height: screenh / 1.5,
-                          // width: screenw / 1.5,
-                          decoration: const BoxDecoration(
-                              image: DecorationImage(
-                                  image:
-                                      AssetImage("assets/images/login.png")))),
+                        // height: screenh / 1.5,
+                        // width: screenw / 1.5,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage(Assets.images.login.path),
+                          ),
+                        ),
+                      ),
                     ),
-                  )),
-          const SizedBox(
-            height: 20,
-          ),
-          const Text(
-            "LOGIN",
-            style: TextStyle(
-                fontSize: 22,
-                fontWeight: FontWeight.bold,
-                fontFamily: "KdaMThmorPro"),
+                  ),
+                ),
+          const SizedBox(height: 20),
+          Text(
+            'LOGIN',
+            style: textTheme.labelLarge?.copyWith(fontSize: 22),
           ),
           Padding(
             padding: const EdgeInsets.all(20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                fieldTitle("Employee ID"),
-                customField("Enter your Employee ID", idController, false),
+              children: <Widget>[
+                fieldTitle('Employee ID', textTheme),
+                customField('Enter your Employee ID', idController, false),
                 const SizedBox(
                   height: 10,
                 ),
-                fieldTitle("Password"),
-                customField("Enter your Password", passController, true),
+                fieldTitle('Password', textTheme),
+                customField('Enter your Password', passController, true),
                 GestureDetector(
                   onTap: () async {
                     FocusScope.of(context).unfocus();
@@ -83,51 +84,53 @@ class _LoginScreenState extends State<LoginScreen> {
 
                     if (id.isEmpty) {
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                        content: Text("Employee id is still empty!"),
+                        content: Text('Employee id is still empty!'),
                       ));
                     } else if (password.isEmpty) {
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                        content: Text("Password is still empty!"),
+                        content: Text('Password is still empty!'),
                       ));
                     } else {
-                      QuerySnapshot snap = await FirebaseFirestore.instance
-                          .collection("Employee")
-                          .where('id', isEqualTo: id)
-                          .get();
+                      QuerySnapshot<Map<String, dynamic>> snap =
+                          await FirebaseFirestore.instance
+                              .collection('Employee')
+                              .where('id', isEqualTo: id)
+                              .get();
 
                       try {
                         if (password == snap.docs[0]['password']) {
                           sharedPreferences =
                               await SharedPreferences.getInstance();
 
-                          sharedPreferences
+                          await sharedPreferences
                               .setString('employeeId', id)
                               .then((_) {
                             Navigator.pushReplacement(
                                 context,
-                                MaterialPageRoute(
-                                    builder: (context) => const Homescreen()));
+                                MaterialPageRoute<dynamic>(
+                                    builder: (_) => const Homescreen()));
                           });
                         } else {
+                          if (!mounted) return;
                           ScaffoldMessenger.of(context)
                               .showSnackBar(const SnackBar(
-                            content: Text("Password is not correct!"),
+                            content: Text('Password is not correct!'),
                           ));
                         }
                       } catch (e) {
-                        String error = " ";
+                        String error = ' ';
 
                         if (e.toString() ==
-                            "RangeError (index): Invalid value: Valid value range is empty: 0") {
+                            'RangeError (index): Invalid value: Valid value range is empty: 0') {
                           setState(() {
-                            error = "Employee id does not exist!";
+                            error = 'Employee id does not exist!';
                           });
                         } else {
                           setState(() {
-                            error = "Error occurred!";
+                            error = 'Error occurred!';
                           });
                         }
-
+                        if (!mounted) return;
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                           content: Text(error),
                         ));
@@ -144,11 +147,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     child: Center(
                       child: Text(
-                        "LOGIN",
-                        style: TextStyle(
-                          fontFamily: "KdaMThmorPro",
-                          fontSize: screenw / 26,
+                        'LOGIN',
+                        style: textTheme.labelLarge?.copyWith(
                           color: Colors.white,
+                          fontSize: screenw / 26,
                           letterSpacing: 2,
                         ),
                       ),
@@ -161,23 +163,22 @@ class _LoginScreenState extends State<LoginScreen> {
           const Spacer(),
           Text.rich(
             TextSpan(
-              text: "New User ? ",
-              style: const TextStyle(
-                fontFamily: "KdaMThmorPro",
-                color: Colors.black,
+              text: 'New User ? ',
+              style: textTheme.labelSmall?.copyWith(
+                fontSize: screenw / 26,
               ),
-              children: [
+              children: <TextSpan>[
                 TextSpan(
-                  text: "Sign Up",
+                  text: 'Sign Up',
                   recognizer: TapGestureRecognizer()
                     ..onTap = () => Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => const SignUpScreen()),
+                          MaterialPageRoute<dynamic>(
+                              builder: (_) => const SignUpScreen()),
                         ),
-                  style: const TextStyle(
-                    fontFamily: "KdaMThmorPro",
+                  style: textTheme.labelSmall?.copyWith(
                     color: Colors.blue,
+                    fontSize: screenw / 26,
                   ),
                 ),
               ],
@@ -186,24 +187,19 @@ class _LoginScreenState extends State<LoginScreen> {
             textAlign: TextAlign.center,
             overflow: TextOverflow.ellipsis,
           ),
-          SizedBox(
-            height: screenh / 70,
-          )
+          SizedBox(height: screenh / 70)
         ],
       ),
     );
   }
 }
 
-Widget fieldTitle(String title) {
+Widget fieldTitle(String title, TextTheme textTheme) {
   return Container(
     margin: const EdgeInsets.only(bottom: 12),
     child: Text(
       title,
-      style: TextStyle(
-        fontSize: screenw / 26,
-        fontFamily: "NexaBold",
-      ),
+      style: textTheme.labelLarge?.copyWith(fontSize: screenw / 26),
     ),
   );
 }
@@ -216,7 +212,7 @@ Widget customField(
     decoration: const BoxDecoration(
       color: Colors.white,
       borderRadius: BorderRadius.all(Radius.circular(12)),
-      boxShadow: [
+      boxShadow: <BoxShadow>[
         BoxShadow(
           color: Colors.black26,
           blurRadius: 10,
@@ -225,7 +221,7 @@ Widget customField(
       ],
     ),
     child: Row(
-      children: [
+      children: <Widget>[
         SizedBox(
           width: screenw / 6,
           child: Icon(

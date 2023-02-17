@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:month_year_picker/month_year_picker.dart';
 
-import 'src/features/home/Home.dart';
+import 'home.dart';
 
 class Calendar extends StatefulWidget {
   const Calendar({Key? key}) : super(key: key);
@@ -16,34 +16,29 @@ class _CalendarState extends State<Calendar> {
   String _month = DateFormat('MMMM').format(DateTime.now());
   @override
   Widget build(BuildContext context) {
+    TextTheme textTheme = Theme.of(context).textTheme;
     return Scaffold(
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
         child: Column(
-          children: [
+          children: <Widget>[
             Container(
               alignment: Alignment.centerLeft,
               margin: const EdgeInsets.only(top: 32),
               child: Text(
-                "My Attendance",
-                style: TextStyle(
-                  fontFamily: "KdaMThmorPro",
-                  fontWeight: FontWeight.bold,
-                  fontSize: screenw / 18,
-                ),
+                'My Attendance',
+                style: textTheme.labelLarge?.copyWith(fontSize: screenw / 18),
               ),
             ),
             Stack(
-              children: [
+              children: <Widget>[
                 Container(
                   alignment: Alignment.centerLeft,
                   margin: const EdgeInsets.only(top: 32),
                   child: Text(
                     _month,
-                    style: TextStyle(
-                      fontFamily: "AnekDevanagari",
-                      fontSize: screenw / 18,
-                    ),
+                    style:
+                        textTheme.bodyMedium?.copyWith(fontSize: screenw / 18),
                   ),
                 ),
                 Container(
@@ -51,12 +46,12 @@ class _CalendarState extends State<Calendar> {
                   margin: const EdgeInsets.only(top: 31),
                   child: GestureDetector(
                     onTap: () async {
-                      final month = await showMonthYearPicker(
+                      DateTime? month = await showMonthYearPicker(
                           context: context,
                           initialDate: DateTime.now(),
                           firstDate: DateTime(2022),
                           lastDate: DateTime(2099),
-                          builder: (context, child) {
+                          builder: (BuildContext context, Widget? child) {
                             return Theme(
                               data: Theme.of(context).copyWith(
                                 colorScheme: const ColorScheme.light(
@@ -66,20 +61,8 @@ class _CalendarState extends State<Calendar> {
                                 ),
                                 textButtonTheme: TextButtonThemeData(
                                   style: TextButton.styleFrom(
-                                    foregroundColor:
-                                        const Color.fromRGBO(2, 64, 116, 1),
-                                  ),
-                                ),
-                                textTheme: const TextTheme(
-                                  headline4: TextStyle(
-                                    fontFamily: "AnekDevanagari",
-                                  ),
-                                  overline: TextStyle(
-                                    fontFamily: "AnekDevanagari",
-                                  ),
-                                  button: TextStyle(
-                                    fontFamily: "AnekDevanagari",
-                                  ),
+                                      foregroundColor:
+                                          const Color.fromRGBO(2, 64, 116, 1)),
                                 ),
                               ),
                               child: child!,
@@ -93,11 +76,9 @@ class _CalendarState extends State<Calendar> {
                       }
                     },
                     child: Text(
-                      "Pick a Month",
-                      style: TextStyle(
-                        fontFamily: "AnekDevanagari",
-                        fontSize: screenw / 18,
-                      ),
+                      'Pick a Month',
+                      style: textTheme.bodyMedium
+                          ?.copyWith(fontSize: screenw / 18),
                     ),
                   ),
                 ),
@@ -105,21 +86,23 @@ class _CalendarState extends State<Calendar> {
             ),
             SizedBox(
               height: screenh / 1.45,
-              child: StreamBuilder<QuerySnapshot>(
+              child: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
                 stream: FirebaseFirestore.instance
-                    .collection("Employee")
-                    .doc("Rf9LKIsunYRsAt9PcEA4")
-                    .collection("Record")
+                    .collection('Employee')
+                    .doc('Rf9LKIsunYRsAt9PcEA4')
+                    .collection('Record')
                     .snapshots(),
                 builder: (BuildContext context,
-                    AsyncSnapshot<QuerySnapshot> snapshot) {
+                    AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>>
+                        snapshot) {
                   if (snapshot.hasData) {
-                    final snap = snapshot.data!.docs;
+                    List<QueryDocumentSnapshot<Object?>> snap =
+                        snapshot.data!.docs;
                     return ListView.builder(
                       itemCount: snap.length,
-                      itemBuilder: (context, index) {
-                        return DateFormat('MMMM')
-                                    .format(snap[index]['date'].toDate()) ==
+                      itemBuilder: (BuildContext context, int index) {
+                        return DateFormat('MMMM').format(
+                                    snap[index]['date'].toDate() as DateTime) ==
                                 _month
                             ? Container(
                                 margin: EdgeInsets.only(
@@ -127,7 +110,7 @@ class _CalendarState extends State<Calendar> {
                                 height: 100,
                                 decoration: const BoxDecoration(
                                   color: Colors.white,
-                                  boxShadow: [
+                                  boxShadow: <BoxShadow>[
                                     BoxShadow(
                                       color: Colors.black26,
                                       blurRadius: 10,
@@ -140,7 +123,7 @@ class _CalendarState extends State<Calendar> {
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
+                                  children: <Widget>[
                                     Expanded(
                                       child: Container(
                                         margin: const EdgeInsets.only(),
@@ -152,12 +135,12 @@ class _CalendarState extends State<Calendar> {
                                         child: Center(
                                           child: Text(
                                             DateFormat('EE\ndd').format(
-                                                snap[index]['date'].toDate()),
-                                            style: TextStyle(
-                                              fontFamily: "AnekDevanagari",
-                                              fontSize: screenw / 22,
-                                              color: Colors.white,
+                                              snap[index]['date'].toDate()
+                                                  as DateTime,
                                             ),
+                                            style: textTheme.bodyMedium
+                                                ?.copyWith(
+                                                    fontSize: screenw / 22),
                                           ),
                                         ),
                                       ),
@@ -168,21 +151,20 @@ class _CalendarState extends State<Calendar> {
                                             MainAxisAlignment.center,
                                         crossAxisAlignment:
                                             CrossAxisAlignment.center,
-                                        children: [
+                                        children: <Widget>[
                                           Text(
-                                            "Check In",
-                                            style: TextStyle(
-                                              fontFamily: "AnekDevanagari",
+                                            'Check In',
+                                            style:
+                                                textTheme.bodyMedium?.copyWith(
                                               fontSize: screenw / 22,
                                               color: Colors.black54,
                                             ),
                                           ),
                                           Text(
-                                            snap[index]['checkIn'],
-                                            style: TextStyle(
-                                              fontFamily: "AnekDevanagari",
-                                              fontSize: screenw / 22,
-                                            ),
+                                            snap[index]['checkIn'] as String,
+                                            style: textTheme.bodyMedium
+                                                ?.copyWith(
+                                                    fontSize: screenw / 22),
                                           ),
                                         ],
                                       ),
@@ -193,19 +175,19 @@ class _CalendarState extends State<Calendar> {
                                             MainAxisAlignment.center,
                                         crossAxisAlignment:
                                             CrossAxisAlignment.center,
-                                        children: [
+                                        children: <Widget>[
                                           Text(
-                                            "Check Out",
-                                            style: TextStyle(
-                                              fontFamily: "AnekDevanagari",
+                                            'Check Out',
+                                            style:
+                                                textTheme.bodyMedium?.copyWith(
                                               fontSize: screenw / 22,
                                               color: Colors.black54,
                                             ),
                                           ),
                                           Text(
-                                            snap[index]['checkOut'],
-                                            style: TextStyle(
-                                              fontFamily: "AnekDevanagari",
+                                            snap[index]['checkOut'] as String,
+                                            style:
+                                                textTheme.bodyMedium?.copyWith(
                                               fontSize: screenw / 22,
                                             ),
                                           ),
