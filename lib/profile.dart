@@ -1,23 +1,21 @@
 import 'dart:io';
-import 'package:path/path.dart' as path;
-import 'package:attendance/Home.dart';
+
+import 'package:attendance/src/features/authentication/presentation/login/Login.dart';
 import 'package:attendance/usert.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
-import 'package:permission_handler/permission_handler.dart';
 
-class profile extends StatefulWidget {
-  const profile({Key? key}) : super(key: key);
+class Profile extends StatefulWidget {
+  const Profile({Key? key}) : super(key: key);
 
   @override
-  State<profile> createState() => _profileState();
+  State<Profile> createState() => _ProfileState();
 }
 
-class _profileState extends State<profile> {
+class _ProfileState extends State<Profile> {
   String birth = "Date of birth";
 
   TextEditingController firstNameController = TextEditingController();
@@ -150,7 +148,8 @@ class _profileState extends State<profile> {
                                 ),
                                 textButtonTheme: TextButtonThemeData(
                                   style: TextButton.styleFrom(
-                                    primary: const Color.fromRGBO(2, 64, 116, 1),
+                                    foregroundColor:
+                                        const Color.fromRGBO(2, 64, 116, 1),
                                   ),
                                 ),
                                 textTheme: const TextTheme(
@@ -227,7 +226,7 @@ class _profileState extends State<profile> {
                       margin: const EdgeInsets.only(bottom: 12),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(4),
-                        color: Color.fromRGBO(2, 64, 116, 1),
+                        color: const Color.fromRGBO(2, 64, 116, 1),
                       ),
                       child: const Center(
                         child: Text(

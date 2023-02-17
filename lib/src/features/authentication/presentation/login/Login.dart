@@ -1,17 +1,16 @@
-import 'package:attendance/Home.dart';
+import 'package:attendance/src/features/home/Home.dart';
+import 'package:attendance/src/features/authentication/presentation/signup/sign_up_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class Loginscreen extends StatefulWidget {
-  const Loginscreen({Key? key}) : super(key: key);
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({Key? key}) : super(key: key);
 
   @override
-  State<Loginscreen> createState() => _LoginscreenState();
+  State<LoginScreen> createState() => _LoginScreenState();
 }
 
 TextEditingController idController = TextEditingController();
@@ -19,26 +18,8 @@ TextEditingController passController = TextEditingController();
 double screenh = 0;
 double screenw = 0;
 
-class _LoginscreenState extends State<Loginscreen> {
+class _LoginScreenState extends State<LoginScreen> {
   late SharedPreferences sharedPreferences;
-
-  Future<void> passwordReset(String email) async {
-    try {
-      FirebaseAuth _auth = FirebaseAuth.instance;
-      if (email == "") {
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          content: Text("Please enter the email ID"),
-        ));
-      } else {
-        await _auth.sendPasswordResetEmail(email: email);
-      }
-    } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        content: Text("Entered email is not registered"),
-      ));
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     final bool isKeyboardVisible =
@@ -46,8 +27,9 @@ class _LoginscreenState extends State<Loginscreen> {
     screenh = MediaQuery.of(context).size.height;
     screenw = MediaQuery.of(context).size.width;
     return Scaffold(
-        resizeToAvoidBottomInset: false,
-        body: Column(children: [
+      resizeToAvoidBottomInset: false,
+      body: Column(
+        children: [
           isKeyboardVisible
               ? const SizedBox(height: 35)
               : Container(
@@ -61,19 +43,16 @@ class _LoginscreenState extends State<Loginscreen> {
                   width: screenw,
                   child: Center(
                     child: Padding(
-                      padding: EdgeInsets.all(60),
+                      padding: const EdgeInsets.all(60),
                       child: Container(
-                        // height: screenh / 1.5,
-                        // width: screenw / 1.5,
-                        decoration: const BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage("assets/images/login.png"),
-                          ),
-                        ),
-                      ),
+                          // height: screenh / 1.5,
+                          // width: screenw / 1.5,
+                          decoration: const BoxDecoration(
+                              image: DecorationImage(
+                                  image:
+                                      AssetImage("assets/images/login.png")))),
                     ),
-                  ),
-                ),
+                  )),
           const SizedBox(
             height: 20,
           ),
@@ -148,6 +127,7 @@ class _LoginscreenState extends State<Loginscreen> {
                             error = "Error occurred!";
                           });
                         }
+
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                           content: Text(error),
                         ));
@@ -175,19 +155,43 @@ class _LoginscreenState extends State<Loginscreen> {
                     ),
                   ),
                 ),
-                const SizedBox(
-                  height: 20,
-                ),
-                InkWell(
-                  onTap: () {
-                    passwordReset(idController.text.trim());
-                  },
-                  child: const Text("Forgot Password"),
-                )
               ],
             ),
+          ),
+          const Spacer(),
+          Text.rich(
+            TextSpan(
+              text: "New User ? ",
+              style: const TextStyle(
+                fontFamily: "KdaMThmorPro",
+                color: Colors.black,
+              ),
+              children: [
+                TextSpan(
+                  text: "Sign Up",
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const SignUpScreen()),
+                        ),
+                  style: const TextStyle(
+                    fontFamily: "KdaMThmorPro",
+                    color: Colors.blue,
+                  ),
+                ),
+              ],
+            ),
+            maxLines: 1,
+            textAlign: TextAlign.center,
+            overflow: TextOverflow.ellipsis,
+          ),
+          SizedBox(
+            height: screenh / 70,
           )
-        ]));
+        ],
+      ),
+    );
   }
 }
 

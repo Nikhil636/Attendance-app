@@ -1,18 +1,18 @@
-import 'package:attendance/Home.dart';
-import 'package:attendance/usert.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:month_year_picker/month_year_picker.dart';
 
-class calendar extends StatefulWidget {
-  const calendar({Key? key}) : super(key: key);
+import 'src/features/home/Home.dart';
+
+class Calendar extends StatefulWidget {
+  const Calendar({Key? key}) : super(key: key);
 
   @override
-  State<calendar> createState() => _calendarState();
+  State<Calendar> createState() => _CalendarState();
 }
 
-class _calendarState extends State<calendar> {
+class _CalendarState extends State<Calendar> {
   String _month = DateFormat('MMMM').format(DateTime.now());
   @override
   Widget build(BuildContext context) {
@@ -59,14 +59,15 @@ class _calendarState extends State<calendar> {
                           builder: (context, child) {
                             return Theme(
                               data: Theme.of(context).copyWith(
-                                colorScheme: ColorScheme.light(
+                                colorScheme: const ColorScheme.light(
                                   primary: Color.fromRGBO(2, 64, 116, 1),
                                   secondary: Color.fromRGBO(2, 64, 116, 1),
                                   onSecondary: Colors.white,
                                 ),
                                 textButtonTheme: TextButtonThemeData(
                                   style: TextButton.styleFrom(
-                                    primary: Color.fromRGBO(2, 64, 116, 1),
+                                    foregroundColor:
+                                        const Color.fromRGBO(2, 64, 116, 1),
                                   ),
                                 ),
                                 textTheme: const TextTheme(
@@ -143,9 +144,9 @@ class _calendarState extends State<calendar> {
                                     Expanded(
                                       child: Container(
                                         margin: const EdgeInsets.only(),
-                                        decoration: BoxDecoration(
+                                        decoration: const BoxDecoration(
                                           color: Color.fromRGBO(2, 64, 116, 1),
-                                          borderRadius: const BorderRadius.all(
+                                          borderRadius: BorderRadius.all(
                                               Radius.circular(20)),
                                         ),
                                         child: Center(
