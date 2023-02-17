@@ -1,0 +1,8 @@
+#Build.yaml for varoius code generatros used in the application
+targets:
+  $default:
+    builders:
+      json_serializable|json_serializable:
+        options:
+          explicit_to_json: true
+          include_if_null: false

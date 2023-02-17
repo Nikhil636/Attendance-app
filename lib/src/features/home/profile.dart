@@ -1,12 +1,13 @@
 import 'dart:io';
 
-import 'package:attendance/src/features/authentication/presentation/login/Login.dart';
-import 'package:attendance/usert.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+
+import '../authentication/presentation/login/login_screen.dart';
+import 'usert.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
@@ -16,13 +17,13 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
-  String birth = "Date of birth";
+  String birth = 'Date of birth';
 
   TextEditingController firstNameController = TextEditingController();
   TextEditingController lastNameController = TextEditingController();
   TextEditingController addressController = TextEditingController();
 
-  void pickUploadProfilePic() async {
+  Future<void> pickUploadProfilePic() async {
     // final firebaseStorage = FirebaseStorage.instance;
     // final imagePicker = ImagePicker();
     // PickedFile? image;
@@ -53,7 +54,7 @@ class _ProfileState extends State<Profile> {
     // } else {
     //   print('Permission not granted. Try Again with permission access');
     // }
-    final image = await ImagePicker().pickImage(
+    XFile? image = await ImagePicker().pickImage(
       source: ImageSource.gallery,
       maxHeight: 512,
       maxWidth: 512,
@@ -62,18 +63,17 @@ class _ProfileState extends State<Profile> {
 
     Reference ref = FirebaseStorage.instance
         .ref()
-        .child("${User.employeeId.toLowerCase()}_profilepic.jpg");
+        .child('${User.employeeId.toLowerCase()}_profilepic.jpg');
     await ref.putFile(File(image!.path));
 
-    ref.getDownloadURL().then((value) async {
+    await ref.getDownloadURL().then((String value) async {
       setState(() {
         User.profilePicLink = value;
       });
-
       await FirebaseFirestore.instance
-          .collection("Employee")
-          .doc("Rf9LKIsunYRsAt9PcEA4")
-          .update({
+          .collection('Employee')
+          .doc('Rf9LKIsunYRsAt9PcEA4')
+          .update(<Object, Object>{
         'profilePic': value,
       });
     });
@@ -81,11 +81,12 @@ class _ProfileState extends State<Profile> {
 
   @override
   Widget build(BuildContext context) {
+    TextTheme textTheme = Theme.of(context).textTheme;
     return Scaffold(
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
         child: Column(
-          children: [
+          children: <Widget>[
             GestureDetector(
               onTap: pickUploadProfilePic,
               child: Container(
@@ -98,7 +99,7 @@ class _ProfileState extends State<Profile> {
                   color: const Color.fromRGBO(2, 64, 116, 1),
                 ),
                 child: Center(
-                  child: User.profilePicLink == " "
+                  child: User.profilePicLink == ' '
                       ? const Icon(
                           Icons.person,
                           color: Colors.white,
@@ -114,22 +115,19 @@ class _ProfileState extends State<Profile> {
             Align(
               alignment: Alignment.center,
               child: Text(
-                "Employee ${User.employeeId}",
-                style: const TextStyle(
-                  fontFamily: "KdaMThmorPro",
-                  fontSize: 18,
-                ),
+                'Employee ${User.employeeId}',
+                style: textTheme.labelMedium,
               ),
             ),
-            const SizedBox(
-              height: 24,
-            ),
+            const SizedBox(height: 24),
             User.canEdit
-                ? textField("First Name", "First name", firstNameController)
-                : field("First Name", User.firstName),
+                ? textField(
+                    'First Name', 'First name', firstNameController, textTheme)
+                : field('First Name', User.firstName, textTheme),
             User.canEdit
-                ? textField("Last Name", "Last name", lastNameController)
-                : field("Last Name", User.lastName),
+                ? textField(
+                    'Last Name', 'Last name', lastNameController, textTheme)
+                : field('Last Name', User.lastName, textTheme),
             User.canEdit
                 ? GestureDetector(
                     onTap: () {
@@ -138,7 +136,7 @@ class _ProfileState extends State<Profile> {
                           initialDate: DateTime.now(),
                           firstDate: DateTime(1950),
                           lastDate: DateTime.now(),
-                          builder: (context, child) {
+                          builder: (BuildContext context, Widget? child) {
                             return Theme(
                               data: Theme.of(context).copyWith(
                                 colorScheme: const ColorScheme.light(
@@ -152,32 +150,21 @@ class _ProfileState extends State<Profile> {
                                         const Color.fromRGBO(2, 64, 116, 1),
                                   ),
                                 ),
-                                textTheme: const TextTheme(
-                                  headline4: TextStyle(
-                                    fontFamily: "AnekDevanagari",
-                                  ),
-                                  overline: TextStyle(
-                                    fontFamily: "AnekDevanagari",
-                                  ),
-                                  button: TextStyle(
-                                    fontFamily: "AnekDevanagari",
-                                  ),
-                                ),
                               ),
                               child: child!,
                             );
-                          }).then((value) {
+                          }).then((DateTime? value) {
                         setState(() {
-                          birth = DateFormat("MM/dd/yyyy").format(value!);
+                          birth = DateFormat('MM/dd/yyyy').format(value!);
                         });
                       });
                     },
-                    child: field("Date of Birth", birth),
+                    child: field('Date of Birth', birth, textTheme),
                   )
-                : field("Date of Birth", User.birthDate),
+                : field('Date of Birth', User.birthDate, textTheme),
             User.canEdit
-                ? textField("Address", "Address", addressController)
-                : field("Address", User.address),
+                ? textField('Address', 'Address', addressController, textTheme)
+                : field('Address', User.address, textTheme),
             User.canEdit
                 ? GestureDetector(
                     onTap: () async {
@@ -188,24 +175,24 @@ class _ProfileState extends State<Profile> {
 
                       if (User.canEdit) {
                         if (firstName.isEmpty) {
-                          showSnackBar("Please enter your first name!");
+                          showSnackBar('Please enter your first name!');
                         } else if (lastName.isEmpty) {
-                          showSnackBar("Please enter your last name!");
+                          showSnackBar('Please enter your last name!');
                         } else if (birthDate.isEmpty) {
-                          showSnackBar("Please enter your birth date!");
+                          showSnackBar('Please enter your birth date!');
                         } else if (address.isEmpty) {
-                          showSnackBar("Please enter your address!");
+                          showSnackBar('Please enter your address!');
                         } else {
                           await FirebaseFirestore.instance
-                              .collection("Employee")
-                              .doc("Rf9LKIsunYRsAt9PcEA4")
-                              .update({
+                              .collection('Employee')
+                              .doc('Rf9LKIsunYRsAt9PcEA4')
+                              .update(<Object, Object>{
                             'firstName': firstName,
                             'lastName': lastName,
                             'birthDate': birthDate,
                             'address': address,
                             'canEdit': false,
-                          }).then((value) {
+                          }).then((_) {
                             setState(() {
                               User.canEdit = false;
                               User.firstName = firstName;
@@ -228,12 +215,11 @@ class _ProfileState extends State<Profile> {
                         borderRadius: BorderRadius.circular(4),
                         color: const Color.fromRGBO(2, 64, 116, 1),
                       ),
-                      child: const Center(
+                      child: Center(
                         child: Text(
-                          "SAVE",
-                          style: TextStyle(
+                          'SAVE',
+                          style: textTheme.bodyMedium?.copyWith(
                             color: Colors.white,
-                            fontFamily: "AnekDevanagari",
                             fontSize: 16,
                           ),
                         ),
@@ -247,23 +233,20 @@ class _ProfileState extends State<Profile> {
     );
   }
 
-  Widget field(String title, String text) {
+  Widget field(String title, String text, TextTheme txtTheme) {
     return Column(
-      children: [
+      children: <Widget>[
         Align(
           alignment: Alignment.centerLeft,
           child: Text(
             title,
-            style: const TextStyle(
-              fontFamily: "KdaMThmorPro",
+            style: txtTheme.labelMedium?.copyWith(
               fontSize: 18,
               color: Colors.black87,
             ),
           ),
         ),
-        const SizedBox(
-          height: 8,
-        ),
+        const SizedBox(height: 8),
         Container(
           height: kToolbarHeight,
           width: screenw,
@@ -279,9 +262,8 @@ class _ProfileState extends State<Profile> {
             alignment: Alignment.centerLeft,
             child: Text(
               text,
-              style: const TextStyle(
+              style: txtTheme.bodyMedium?.copyWith(
                 color: Colors.black54,
-                fontFamily: "AnekDevanagari",
                 fontSize: 16,
               ),
             ),
@@ -291,17 +273,15 @@ class _ProfileState extends State<Profile> {
     );
   }
 
-  Widget textField(
-      String title, String hint, TextEditingController controller) {
+  Widget textField(String title, String hint, TextEditingController controller,
+      TextTheme txtTheme) {
     return Column(
-      children: [
+      children: <Widget>[
         Align(
           alignment: Alignment.centerLeft,
           child: Text(
             title,
-            style: const TextStyle(
-              fontFamily: "KdaMThmorPro",
-              fontSize: 18,
+            style: txtTheme.labelMedium?.copyWith(
               color: Colors.black87,
             ),
           ),
@@ -318,10 +298,6 @@ class _ProfileState extends State<Profile> {
             maxLines: 1,
             decoration: InputDecoration(
               hintText: hint,
-              hintStyle: const TextStyle(
-                color: Colors.black54,
-                fontFamily: "AnekDevanagari",
-              ),
               enabledBorder: const OutlineInputBorder(
                 borderSide: BorderSide(
                   color: Colors.black54,
