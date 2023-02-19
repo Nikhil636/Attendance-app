@@ -11,13 +11,18 @@ import 'src/features/authentication/presentation/login/login_screen.dart';
 import 'src/features/home/home.dart';
 import 'src/features/home/usert.dart';
 import 'src/providers/provider_observer.dart';
+import 'src/providers/shared_prefs_provider.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
   runApp(
     ProviderScope(
       key: const Key('RiverpodProviderScope'),
+      overrides: <Override>[
+        prefsProvider.overrideWithValue(sharedPreferences),
+      ],
       observers: <ProviderObserver>[ProviderLogger()],
       child: const MyApp(),
     ),
