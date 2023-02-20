@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../app/constants/assets.gen.dart';
 import '../../../home/home.dart';
+import '../../../qr_code_scanner/presentation/qr_code_page.dart';
 import '../signup/sign_up_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -161,6 +162,32 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
           ),
           const Spacer(),
+          Text.rich(
+            TextSpan(
+              text: 'New gqr ? ',
+              style: textTheme.labelSmall?.copyWith(
+                fontSize: screenw / 26,
+              ),
+              children: <TextSpan>[
+                TextSpan(
+                  text: 'Sign Up',
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () => Navigator.push(
+                          context,
+                          MaterialPageRoute<dynamic>(
+                              builder: (_) =>  QrScannerScreen()),
+                        ),
+                  style: textTheme.labelSmall?.copyWith(
+                    color: Colors.blue,
+                    fontSize: screenw / 26,
+                  ),
+                ),
+              ],
+            ),
+            maxLines: 1,
+            textAlign: TextAlign.center,
+            overflow: TextOverflow.ellipsis,
+          ),
           Text.rich(
             TextSpan(
               text: 'New User ? ',
