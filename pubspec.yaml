@@ -49,6 +49,7 @@ dependencies:
   json_annotation: ^4.8.0
   month_year_picker: ^0.2.0+3
   permission_handler: ^10.2.0
+  qr_code_scanner: ^1.0.1
   shared_preferences: ^2.0.15
   slide_to_act: ^2.0.1
 
@@ -70,4 +71,3 @@ flutter:
 
   assets:
     - assets/images/
-
