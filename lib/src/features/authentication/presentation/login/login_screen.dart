@@ -31,6 +31,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
         success: () async {
           LoaderDialog.hideDialog(context);
           if (!mounted) return;
+          //Push to home screen and reomve all the previous routes in navigation stack
           await Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute<dynamic>(builder: (_) => const HomeScreen()),
