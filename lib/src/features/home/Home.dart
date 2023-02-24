@@ -8,11 +8,11 @@ import 'profile.dart';
 import 'today.dart';
 import 'usert.dart';
 
-class Homescreen extends StatefulWidget {
-  const Homescreen({Key? key}) : super(key: key);
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
-  State<Homescreen> createState() => _HomescreenState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
 double screenh = 0;
@@ -25,7 +25,7 @@ List<IconData> navigationIcons = <IconData>[
   FontAwesomeIcons.user,
 ];
 
-class _HomescreenState extends State<Homescreen> {
+class _HomeScreenState extends State<HomeScreen> {
   int currentIndex = 1;
   @override
   void initState() {

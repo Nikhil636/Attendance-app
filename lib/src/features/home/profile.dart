@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 
-import '../authentication/presentation/login/login_screen.dart';
 import 'usert.dart';
 
 class Profile extends StatefulWidget {
@@ -81,6 +80,7 @@ class _ProfileState extends State<Profile> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     TextTheme textTheme = Theme.of(context).textTheme;
     return Scaffold(
       body: SingleChildScrollView(
@@ -123,11 +123,11 @@ class _ProfileState extends State<Profile> {
             User.canEdit
                 ? textField(
                     'First Name', 'First name', firstNameController, textTheme)
-                : field('First Name', User.firstName, textTheme),
+                : field('First Name', User.firstName, textTheme, size),
             User.canEdit
                 ? textField(
                     'Last Name', 'Last name', lastNameController, textTheme)
-                : field('Last Name', User.lastName, textTheme),
+                : field('Last Name', User.lastName, textTheme, size),
             User.canEdit
                 ? GestureDetector(
                     onTap: () {
@@ -159,12 +159,12 @@ class _ProfileState extends State<Profile> {
                         });
                       });
                     },
-                    child: field('Date of Birth', birth, textTheme),
+                    child: field('Date of Birth', birth, textTheme, size),
                   )
-                : field('Date of Birth', User.birthDate, textTheme),
+                : field('Date of Birth', User.birthDate, textTheme, size),
             User.canEdit
                 ? textField('Address', 'Address', addressController, textTheme)
-                : field('Address', User.address, textTheme),
+                : field('Address', User.address, textTheme, size),
             User.canEdit
                 ? GestureDetector(
                     onTap: () async {
@@ -209,7 +209,7 @@ class _ProfileState extends State<Profile> {
                     },
                     child: Container(
                       height: kToolbarHeight,
-                      width: screenw,
+                      width: size.width,
                       margin: const EdgeInsets.only(bottom: 12),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(4),
@@ -233,7 +233,7 @@ class _ProfileState extends State<Profile> {
     );
   }
 
-  Widget field(String title, String text, TextTheme txtTheme) {
+  Widget field(String title, String text, TextTheme txtTheme, Size size) {
     return Column(
       children: <Widget>[
         Align(
@@ -249,7 +249,7 @@ class _ProfileState extends State<Profile> {
         const SizedBox(height: 8),
         Container(
           height: kToolbarHeight,
-          width: screenw,
+          width: size.width,
           margin: const EdgeInsets.only(bottom: 12),
           padding: const EdgeInsets.only(left: 11),
           decoration: BoxDecoration(

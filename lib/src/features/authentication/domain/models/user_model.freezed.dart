@@ -14,12 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-User _$UserFromJson(Map<String, dynamic> json) {
-  return _User.fromJson(json);
+UserDTO _$UserDTOFromJson(Map<String, dynamic> json) {
+  return _UserDTO.fromJson(json);
 }
 
 /// @nodoc
-mixin _$User {
+mixin _$UserDTO {
   String? get employeeId => throw _privateConstructorUsedError;
   String? get firstName => throw _privateConstructorUsedError;
   String? get lastName => throw _privateConstructorUsedError;
@@ -33,13 +33,13 @@ mixin _$User {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $UserCopyWith<User> get copyWith => throw _privateConstructorUsedError;
+  $UserDTOCopyWith<UserDTO> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $UserCopyWith<$Res> {
-  factory $UserCopyWith(User value, $Res Function(User) then) =
-      _$UserCopyWithImpl<$Res, User>;
+abstract class $UserDTOCopyWith<$Res> {
+  factory $UserDTOCopyWith(UserDTO value, $Res Function(UserDTO) then) =
+      _$UserDTOCopyWithImpl<$Res, UserDTO>;
   @useResult
   $Res call(
       {String? employeeId,
@@ -55,9 +55,9 @@ abstract class $UserCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$UserCopyWithImpl<$Res, $Val extends User>
-    implements $UserCopyWith<$Res> {
-  _$UserCopyWithImpl(this._value, this._then);
+class _$UserDTOCopyWithImpl<$Res, $Val extends UserDTO>
+    implements $UserDTOCopyWith<$Res> {
+  _$UserDTOCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -124,9 +124,10 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
 }
 
 /// @nodoc
-abstract class _$$_UserCopyWith<$Res> implements $UserCopyWith<$Res> {
-  factory _$$_UserCopyWith(_$_User value, $Res Function(_$_User) then) =
-      __$$_UserCopyWithImpl<$Res>;
+abstract class _$$_UserDTOCopyWith<$Res> implements $UserDTOCopyWith<$Res> {
+  factory _$$_UserDTOCopyWith(
+          _$_UserDTO value, $Res Function(_$_UserDTO) then) =
+      __$$_UserDTOCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -143,9 +144,10 @@ abstract class _$$_UserCopyWith<$Res> implements $UserCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
-    implements _$$_UserCopyWith<$Res> {
-  __$$_UserCopyWithImpl(_$_User _value, $Res Function(_$_User) _then)
+class __$$_UserDTOCopyWithImpl<$Res>
+    extends _$UserDTOCopyWithImpl<$Res, _$_UserDTO>
+    implements _$$_UserDTOCopyWith<$Res> {
+  __$$_UserDTOCopyWithImpl(_$_UserDTO _value, $Res Function(_$_UserDTO) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -162,7 +164,7 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
     Object? long = null,
     Object? canEdit = null,
   }) {
-    return _then(_$_User(
+    return _then(_$_UserDTO(
       employeeId: freezed == employeeId
           ? _value.employeeId
           : employeeId // ignore: cast_nullable_to_non_nullable
@@ -209,8 +211,8 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
 
 /// @nodoc
 @JsonSerializable()
-class _$_User implements _User {
-  const _$_User(
+class _$_UserDTO implements _UserDTO {
+  const _$_UserDTO(
       {this.employeeId,
       this.firstName,
       this.lastName,
@@ -222,7 +224,8 @@ class _$_User implements _User {
       this.long = 0,
       this.canEdit = false});
 
-  factory _$_User.fromJson(Map<String, dynamic> json) => _$$_UserFromJson(json);
+  factory _$_UserDTO.fromJson(Map<String, dynamic> json) =>
+      _$$_UserDTOFromJson(json);
 
   @override
   final String? employeeId;
@@ -250,14 +253,14 @@ class _$_User implements _User {
 
   @override
   String toString() {
-    return 'User(employeeId: $employeeId, firstName: $firstName, lastName: $lastName, birthDate: $birthDate, id: $id, address: $address, profilePicLink: $profilePicLink, lat: $lat, long: $long, canEdit: $canEdit)';
+    return 'UserDTO(employeeId: $employeeId, firstName: $firstName, lastName: $lastName, birthDate: $birthDate, id: $id, address: $address, profilePicLink: $profilePicLink, lat: $lat, long: $long, canEdit: $canEdit)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_User &&
+            other is _$_UserDTO &&
             (identical(other.employeeId, employeeId) ||
                 other.employeeId == employeeId) &&
             (identical(other.firstName, firstName) ||
@@ -283,19 +286,19 @@ class _$_User implements _User {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_UserCopyWith<_$_User> get copyWith =>
-      __$$_UserCopyWithImpl<_$_User>(this, _$identity);
+  _$$_UserDTOCopyWith<_$_UserDTO> get copyWith =>
+      __$$_UserDTOCopyWithImpl<_$_UserDTO>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_UserToJson(
+    return _$$_UserDTOToJson(
       this,
     );
   }
 }
 
-abstract class _User implements User {
-  const factory _User(
+abstract class _UserDTO implements UserDTO {
+  const factory _UserDTO(
       {final String? employeeId,
       final String? firstName,
       final String? lastName,
@@ -305,9 +308,9 @@ abstract class _User implements User {
       final String? profilePicLink,
       final double lat,
       final double long,
-      final bool canEdit}) = _$_User;
+      final bool canEdit}) = _$_UserDTO;
 
-  factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
+  factory _UserDTO.fromJson(Map<String, dynamic> json) = _$_UserDTO.fromJson;
 
   @override
   String? get employeeId;
@@ -331,5 +334,6 @@ abstract class _User implements User {
   bool get canEdit;
   @override
   @JsonKey(ignore: true)
-  _$$_UserCopyWith<_$_User> get copyWith => throw _privateConstructorUsedError;
+  _$$_UserDTOCopyWith<_$_UserDTO> get copyWith =>
+      throw _privateConstructorUsedError;
 }

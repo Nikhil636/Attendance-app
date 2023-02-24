@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart' ;
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../domain/state/sign_up_state.dart';
 import '../providers/auth_providers.dart';
@@ -15,7 +15,7 @@ class SignUpController extends StateNotifier<SignUpState> {
   }) async {
     state = const SignUpState.loading();
     Either<String, Unit> result =
-        await ref.read(authRepositoryProvider).signUp(email, password);
+        await ref.read(authRepositoryProvider).signUpUser(email, password);
     result.fold(
       (String failure) => state = SignUpState.failure(failure),
       (Unit success) => state = const SignUpState.success(),

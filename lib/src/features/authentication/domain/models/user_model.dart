@@ -4,9 +4,9 @@ part 'user_model.freezed.dart';
 part 'user_model.g.dart';
 
 @freezed
-@JsonSerializable()
-class User with _$User {
-  const factory User({
+@JsonSerializable(includeIfNull: false)
+class UserDTO with _$UserDTO {
+  const factory UserDTO({
     String? employeeId,
     String? firstName,
     String? lastName,
@@ -17,7 +17,8 @@ class User with _$User {
     @Default(0) double lat,
     @Default(0) double long,
     @Default(false) bool canEdit,
-  }) = _User;
+  }) = _UserDTO;
 
-  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
+  factory UserDTO.fromJson(Map<String, dynamic> json) =>
+      _$UserDTOFromJson(json);
 }

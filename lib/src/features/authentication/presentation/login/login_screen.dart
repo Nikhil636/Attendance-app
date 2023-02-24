@@ -1,34 +1,61 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../../../shared/loader_dialog.dart';
 import '../../../../app/constants/assets.gen.dart';
 import '../../../home/home.dart';
+import '../../app/providers/auth_providers.dart';
+import '../../domain/state/login_state.dart';
 import '../signup/sign_up_screen.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class LoginScreen extends StatefulHookConsumerWidget {
+  const LoginScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _LoginScreenState();
 }
 
-TextEditingController idController = TextEditingController();
-TextEditingController passController = TextEditingController();
-double screenh = 0;
-double screenw = 0;
-
-class _LoginScreenState extends State<LoginScreen> {
+class _LoginScreenState extends ConsumerState<LoginScreen> {
   late SharedPreferences sharedPreferences;
   @override
   Widget build(BuildContext context) {
+    //Method that listens to the updates in the login state
+    ref.listen<LoginState>(
+      loginControllerProvider,
+      (LoginState? prev, LoginState next) => next.whenOrNull(
+        success: () async {
+          LoaderDialog.hideDialog(context);
+          if (!mounted) return;
+          await Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute<dynamic>(builder: (_) => const HomeScreen()),
+            (Route<dynamic> route) => false,
+          );
+          return null;
+        },
+        failure: (String failure) {
+          LoaderDialog.hideDialog(context);
+          ScaffoldMessenger.of(context)
+              .showSnackBar(SnackBar(content: Text(failure)));
+          return null;
+        },
+        loading: () async {
+          await LoaderDialog.showLoaderDialog(context);
+          return null;
+        },
+      ),
+    );
+    TextEditingController idController = useTextEditingController();
+    TextEditingController passController = useTextEditingController();
     TextTheme textTheme = Theme.of(context).textTheme;
     bool isKeyboardVisible =
         KeyboardVisibilityProvider.isKeyboardVisible(context);
-    screenh = MediaQuery.of(context).size.height;
-    screenw = MediaQuery.of(context).size.width;
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Column(
@@ -42,14 +69,14 @@ class _LoginScreenState extends State<LoginScreen> {
                         bottomLeft: Radius.circular(60),
                         bottomRight: Radius.circular(60)),
                   ),
-                  height: screenh / 2.5,
-                  width: screenw,
+                  height: size.height / 2.5,
+                  width: size.width,
                   child: Center(
                     child: Padding(
                       padding: const EdgeInsets.all(60),
                       child: Container(
-                        // height: screenh / 1.5,
-                        // width: screenw / 1.5,
+                        // height: size.height / 1.5,
+                        // width: size.width / 1.5,
                         decoration: BoxDecoration(
                           image: DecorationImage(
                             image: AssetImage(Assets.images.login.path),
@@ -69,13 +96,14 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                fieldTitle('Employee ID', textTheme),
-                customField('Enter your Employee ID', idController, false),
+                fieldTitle('Employee ID', textTheme, size),
+                customField(
+                    'Enter your Employee ID', idController, false, size),
                 const SizedBox(
                   height: 10,
                 ),
-                fieldTitle('Password', textTheme),
-                customField('Enter your Password', passController, true),
+                fieldTitle('Password', textTheme, size),
+                customField('Enter your Password', passController, true, size),
                 GestureDetector(
                   onTap: () async {
                     FocusScope.of(context).unfocus();
@@ -106,9 +134,10 @@ class _LoginScreenState extends State<LoginScreen> {
                               .setString('employeeId', id)
                               .then((_) {
                             Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute<dynamic>(
-                                    builder: (_) => const Homescreen()));
+                              context,
+                              MaterialPageRoute<dynamic>(
+                                  builder: (_) => const HomeScreen()),
+                            );
                           });
                         } else {
                           if (!mounted) return;
@@ -119,7 +148,6 @@ class _LoginScreenState extends State<LoginScreen> {
                         }
                       } catch (e) {
                         String error = ' ';
-
                         if (e.toString() ==
                             'RangeError (index): Invalid value: Valid value range is empty: 0') {
                           setState(() {
@@ -139,8 +167,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   },
                   child: Container(
                     height: 60,
-                    width: screenw,
-                    margin: EdgeInsets.only(top: screenh / 40),
+                    width: size.width,
+                    margin: EdgeInsets.only(top: size.height / 40),
                     decoration: const BoxDecoration(
                       color: Color.fromRGBO(2, 64, 116, 1),
                       borderRadius: BorderRadius.all(Radius.circular(30)),
@@ -150,7 +178,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         'LOGIN',
                         style: textTheme.labelLarge?.copyWith(
                           color: Colors.white,
-                          fontSize: screenw / 26,
+                          fontSize: size.width / 26,
                           letterSpacing: 2,
                         ),
                       ),
@@ -164,9 +192,7 @@ class _LoginScreenState extends State<LoginScreen> {
           Text.rich(
             TextSpan(
               text: 'New User ? ',
-              style: textTheme.labelSmall?.copyWith(
-                fontSize: screenw / 26,
-              ),
+              style: textTheme.labelSmall?.copyWith(fontSize: size.width / 26),
               children: <TextSpan>[
                 TextSpan(
                   text: 'Sign Up',
@@ -178,7 +204,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                   style: textTheme.labelSmall?.copyWith(
                     color: Colors.blue,
-                    fontSize: screenw / 26,
+                    fontSize: size.width / 26,
                   ),
                 ),
               ],
@@ -187,68 +213,67 @@ class _LoginScreenState extends State<LoginScreen> {
             textAlign: TextAlign.center,
             overflow: TextOverflow.ellipsis,
           ),
-          SizedBox(height: screenh / 70)
+          SizedBox(height: size.height / 70)
         ],
       ),
     );
   }
-}
 
-Widget fieldTitle(String title, TextTheme textTheme) {
-  return Container(
-    margin: const EdgeInsets.only(bottom: 12),
-    child: Text(
-      title,
-      style: textTheme.labelLarge?.copyWith(fontSize: screenw / 26),
-    ),
-  );
-}
+  Widget fieldTitle(String title, TextTheme textTheme, Size size) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 12),
+      child: Text(
+        title,
+        style: textTheme.labelLarge?.copyWith(fontSize: size.width / 26),
+      ),
+    );
+  }
 
-Widget customField(
-    String hint, TextEditingController controller, bool obscure) {
-  return Container(
-    width: screenw / 1.1,
-    margin: const EdgeInsets.only(bottom: 12),
-    decoration: const BoxDecoration(
-      color: Colors.white,
-      borderRadius: BorderRadius.all(Radius.circular(12)),
-      boxShadow: <BoxShadow>[
-        BoxShadow(
-          color: Colors.black26,
-          blurRadius: 10,
-          offset: Offset(2, 2),
-        ),
-      ],
-    ),
-    child: Row(
-      children: <Widget>[
-        SizedBox(
-          width: screenw / 6,
-          child: Icon(
-            Icons.person,
-            size: screenw / 15,
+  Widget customField(
+      String hint, TextEditingController controller, bool obscure, Size size) {
+    return Container(
+      width: size.width / 1.1,
+      margin: const EdgeInsets.only(bottom: 12),
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.all(Radius.circular(12)),
+        boxShadow: <BoxShadow>[
+          BoxShadow(
+            color: Colors.black26,
+            blurRadius: 10,
+            offset: Offset(2, 2),
           ),
-        ),
-        Expanded(
-          child: Padding(
-            padding: EdgeInsets.only(right: screenw / 12),
-            child: TextFormField(
-              controller: controller,
-              enableSuggestions: false,
-              autocorrect: false,
-              decoration: InputDecoration(
-                contentPadding: EdgeInsets.symmetric(
-                  vertical: screenh / 45,
-                ),
-                border: InputBorder.none,
-                hintText: hint,
-              ),
-              maxLines: 1,
-              obscureText: obscure,
+        ],
+      ),
+      child: Row(
+        children: <Widget>[
+          SizedBox(
+            width: size.width / 6,
+            child: Icon(
+              Icons.person,
+              size: size.width / 15,
             ),
           ),
-        )
-      ],
-    ),
-  );
+          Expanded(
+            child: Padding(
+              padding: EdgeInsets.only(right: size.width / 12),
+              child: TextFormField(
+                controller: controller,
+                enableSuggestions: false,
+                autocorrect: false,
+                decoration: InputDecoration(
+                  contentPadding:
+                      EdgeInsets.symmetric(vertical: size.height / 45),
+                  border: InputBorder.none,
+                  hintText: hint,
+                ),
+                maxLines: 1,
+                obscureText: obscure,
+              ),
+            ),
+          )
+        ],
+      ),
+    );
+  }
 }
