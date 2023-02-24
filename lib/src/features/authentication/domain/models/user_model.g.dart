@@ -6,7 +6,7 @@ part of 'user_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-User _$UserFromJson(Map<String, dynamic> json) => User(
+UserDTO _$UserDTOFromJson(Map<String, dynamic> json) => UserDTO(
       employeeId: json['employeeId'] as String?,
       firstName: json['firstName'] as String?,
       lastName: json['lastName'] as String?,
@@ -19,7 +19,7 @@ User _$UserFromJson(Map<String, dynamic> json) => User(
       canEdit: json['canEdit'] as bool,
     );
 
-Map<String, dynamic> _$UserToJson(User instance) {
+Map<String, dynamic> _$UserDTOToJson(UserDTO instance) {
   final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
@@ -41,7 +41,7 @@ Map<String, dynamic> _$UserToJson(User instance) {
   return val;
 }
 
-_$_User _$$_UserFromJson(Map<String, dynamic> json) => _$_User(
+_$_UserDTO _$$_UserDTOFromJson(Map<String, dynamic> json) => _$_UserDTO(
       employeeId: json['employeeId'] as String?,
       firstName: json['firstName'] as String?,
       lastName: json['lastName'] as String?,
@@ -54,7 +54,7 @@ _$_User _$$_UserFromJson(Map<String, dynamic> json) => _$_User(
       canEdit: json['canEdit'] as bool? ?? false,
     );
 
-Map<String, dynamic> _$$_UserToJson(_$_User instance) {
+Map<String, dynamic> _$$_UserDTOToJson(_$_UserDTO instance) {
   final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {

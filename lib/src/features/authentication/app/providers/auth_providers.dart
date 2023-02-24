@@ -2,7 +2,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../data/auth_repository.dart';
+import '../../domain/state/login_state.dart';
 import '../../domain/state/sign_up_state.dart';
+import '../controllers/login_controller.dart';
 import '../controllers/password_notifier.dart';
 import '../controllers/signup_controller.dart';
 
@@ -31,4 +33,12 @@ final AutoDisposeNotifierProvider<PasswordFieldNotifier, bool>
     NotifierProvider.autoDispose<PasswordFieldNotifier, bool>(
   name: 'passwordVisibiltyProvider',
   PasswordFieldNotifier.new,
+);
+
+///Provider for login screen
+final AutoDisposeStateNotifierProvider<LoginController, LoginState>
+    loginControllerProvider =
+    StateNotifierProvider.autoDispose<LoginController, LoginState>(
+  name: 'loginControllerProvider',
+  LoginController.new,
 );
