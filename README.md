@@ -57,15 +57,17 @@ This is an attendance app created using `flutter` and `firebase` where the user'
 ->Make a pull request! (compare your branch with the owner main branch)
 
 ##<h1>Screenshots</h1>
-![06aa49df-4e35-44ba-bab6-ad4c299df011](https://user-images.githubusercontent.com/105562767/221181916-f788e6c3-0342-437a-8b6e-4f58ec5e3161.jpg)
-![8e472b69-2e5e-40da-9e2f-231f573e6dbf](https://user-images.githubusercontent.com/105562767/221181935-7c1134d1-db29-4d30-aa90-82aaf80c5876.jpg)
-![c7340fca-3cef-4f27-9410-2ccdd7cb8232](https://user-images.githubusercontent.com/105562767/221181946-66804bd3-7a5a-4d74-87af-bd288263623d.jpg)
-![d5db5492-8ef6-4c00-80ac-2b7d1e4d3609](https://user-images.githubusercontent.com/105562767/221181958-c572eb2c-b639-4687-bb26-abed8ca79575.jpg)
-![d34327fa-51b5-43ec-a7ee-5bf3a3b152f6](https://user-images.githubusercontent.com/105562767/221181972-3e320cfa-e211-4dd1-9164-22450e895a5e.jpg)
-![fad6f565-6001-42cd-b81d-34be1c87d18d](https://user-images.githubusercontent.com/105562767/221181981-e739163a-064e-415c-b0eb-ced7e4c9ac50.jpg)
+    ![06aa49df-4e35-44ba-bab6-ad4c299d (1)](https://user-images.githubusercontent.com/105562767/221190139-c8c6db3e-0e96-4c46-839e-9774633ef2ab.jpg)
+![06aa49df-4e35-44ba-bab6-ad4c299d](https://user-images.githubusercontent.com/105562767/221190202-5b7678b1-a939-440a-9d7d-d828dda2231b.jpg)
+![8e472b69-2e5e-40da-9e2f-231f573e](https://user-images.githubusercontent.com/105562767/221190231-a7b3232a-2e76-4f68-9441-d0a2a2eb23aa.jpg)
+![c7340fca-3cef-4f27-9410-2ccdd7cb](https://user-images.githubusercontent.com/105562767/221190243-1c050f54-055f-4916-9bb1-67ee4b453322.jpg)
+![d5db5492-8ef6-4c00-80ac-2b7d1e4d](https://user-images.githubusercontent.com/105562767/221190257-13a240f4-652c-409b-8d94-bcb55124ba9f.jpg)
+![d34327fa-51b5-43ec-a7ee-5bf3a3b1 (1)](https://user-images.githubusercontent.com/105562767/221190274-4377515f-ef80-4c1e-8712-f6c5d43a328c.jpg)
+
 
 ---
 <div align="center">
     <h3>Don't forget to ⭐ this repo</h3>
     <h5>Building with the COMMUNITY for the COMMUNITY ❤️</h5>
 </div>
+
