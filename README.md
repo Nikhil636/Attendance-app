@@ -36,6 +36,33 @@ This is an attendance app created using `flutter` and `firebase` where the user'
 🔸Firebase Authentication
 🔸Firestore Database
 
+##<h1>How to Contribute:</h1>
+
+->Create an issue of the project or a feature you would like to add in the project and get the task assigned to you.(Issue can be any bug fixes or any feature you want to add in this project).
+
+->Fork the repo to your Github.
+
+->Clone the Repo by going to your local Git Client in a particular local folder in your local machine by using this command with your forked repository link in place of below given link:
+->git clone https://github.com/Nikhil636/Attendance-app.git
+->Create a branch using below command. git branch <your branch name>
+
+->Checkout to your branch. git checkout <your branch name>
+
+->Add your code in your local machine folder. git add . 
+
+->Commit your changes. git commit -m"<add your message here>"
+
+->Push your changes. git push --set-upstream origin <your branch name>
+
+->Make a pull request! (compare your branch with the owner main branch)
+
+##<h1>Screenshots</h1>
+![06aa49df-4e35-44ba-bab6-ad4c299df011](https://user-images.githubusercontent.com/105562767/221181916-f788e6c3-0342-437a-8b6e-4f58ec5e3161.jpg)
+![8e472b69-2e5e-40da-9e2f-231f573e6dbf](https://user-images.githubusercontent.com/105562767/221181935-7c1134d1-db29-4d30-aa90-82aaf80c5876.jpg)
+![c7340fca-3cef-4f27-9410-2ccdd7cb8232](https://user-images.githubusercontent.com/105562767/221181946-66804bd3-7a5a-4d74-87af-bd288263623d.jpg)
+![d5db5492-8ef6-4c00-80ac-2b7d1e4d3609](https://user-images.githubusercontent.com/105562767/221181958-c572eb2c-b639-4687-bb26-abed8ca79575.jpg)
+![d34327fa-51b5-43ec-a7ee-5bf3a3b152f6](https://user-images.githubusercontent.com/105562767/221181972-3e320cfa-e211-4dd1-9164-22450e895a5e.jpg)
+![fad6f565-6001-42cd-b81d-34be1c87d18d](https://user-images.githubusercontent.com/105562767/221181981-e739163a-064e-415c-b0eb-ced7e4c9ac50.jpg)
 
 ---
 <div align="center">
