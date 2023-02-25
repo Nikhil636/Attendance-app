@@ -51,3 +51,4 @@ This is an attendance app created using `flutter` and `firebase` where the user'
     <h5>Building with the COMMUNITY for the COMMUNITY ❤️</h5>
 </div>
 
+⭐ Go through the contributing guidelines in [CONTRIBUTING](https://github.com/Nikhil636/Attendance-app/blob/main/CONTRIBUTING.md)👩‍💻
