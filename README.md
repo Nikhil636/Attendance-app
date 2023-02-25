@@ -27,10 +27,14 @@ This is an attendance app created using `flutter` and `firebase` where the user'
 
 <H1>TeckStack Used</H1>
 🔸Flutter
+
 🔸Firebase Authentication
+
 🔸Firestore Database
 
+
 <h1>Screenshots</h1>
+
     ![06aa49df-4e35-44ba-bab6-ad4c299d (1)](https://user-images.githubusercontent.com/105562767/221190139-c8c6db3e-0e96-4c46-839e-9774633ef2ab.jpg)
     ![06aa49df-4e35-44ba-bab6-ad4c299d](https://user-images.githubusercontent.com/105562767/221190202-5b7678b1-a939-440a-9d7d-d828dda2231b.jpg)
     ![8e472b69-2e5e-40da-9e2f-231f573e](https://user-images.githubusercontent.com/105562767/221190231-a7b3232a-2e76-4f68-9441-d0a2a2eb23aa.jpg) 
