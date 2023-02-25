@@ -14,10 +14,6 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-UserDTO _$UserDTOFromJson(Map<String, dynamic> json) {
-  return _UserDTO.fromJson(json);
-}
-
 /// @nodoc
 mixin _$UserDTO {
   String? get employeeId => throw _privateConstructorUsedError;
@@ -210,7 +206,7 @@ class __$$_UserDTOCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+@JsonSerializable(createFactory: false)
 class _$_UserDTO implements _UserDTO {
   const _$_UserDTO(
       {this.employeeId,
@@ -223,9 +219,6 @@ class _$_UserDTO implements _UserDTO {
       this.lat = 0,
       this.long = 0,
       this.canEdit = false});
-
-  factory _$_UserDTO.fromJson(Map<String, dynamic> json) =>
-      _$$_UserDTOFromJson(json);
 
   @override
   final String? employeeId;
@@ -309,8 +302,6 @@ abstract class _UserDTO implements UserDTO {
       final double lat,
       final double long,
       final bool canEdit}) = _$_UserDTO;
-
-  factory _UserDTO.fromJson(Map<String, dynamic> json) = _$_UserDTO.fromJson;
 
   @override
   String? get employeeId;

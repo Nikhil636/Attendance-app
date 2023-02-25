@@ -9,9 +9,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../../shared/loader_dialog.dart';
 import '../../../../app/constants/assets.gen.dart';
 import '../../../home/home.dart';
+import '../../../qr_code_scanner/presentation/qr_scanner_screen.dart';
 import '../../app/providers/auth_providers.dart';
 import '../../domain/state/login_state.dart';
-import '../signup/sign_up_screen.dart';
 
 class LoginScreen extends StatefulHookConsumerWidget {
   const LoginScreen({super.key});
@@ -201,7 +201,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     ..onTap = () => Navigator.push(
                           context,
                           MaterialPageRoute<dynamic>(
-                              builder: (_) => const SignUpScreen()),
+                              builder: (_) => QrScannerScreen()),
                         ),
                   style: textTheme.labelSmall?.copyWith(
                     color: Colors.blue,
