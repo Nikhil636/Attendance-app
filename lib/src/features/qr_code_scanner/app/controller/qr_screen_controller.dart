@@ -1,35 +1,15 @@
-import 'dart:async';
 import 'dart:developer';
 
-import 'package:geolocator/geolocator.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
-import '../../../../providers/user_status_provider.dart';
 import '../../domain/qr_state.dart';
-import '../../repository/location_repository.dart';
 
 class QrScreenController extends StateNotifier<QrState> {
   final Ref ref;
-  QrScreenController(this.ref) : super(const QrState.initial()) {
-    initLocationService();
-  }
+  QrScreenController(this.ref) : super(const QrState.scanning());
 
   QRViewController? controller;
-
-  Future<void> initLocationService({bool isRetry = false}) async {
-    if (isRetry) {
-      state = const QrState.scanning();
-    }
-    LocationEither result =
-        await ref.read(locationRepositoryProvider).getCurrentLocation();
-    result.fold(
-      (String left) => state = QrState.error(left),
-      (Position location) => ref
-          .watch(userNotifierProvider.notifier)
-          .updateLocation(location.latitude, location.longitude),
-    );
-  }
 
   void onQRViewCreated(QRViewController qrViewController) {
     controller = qrViewController;

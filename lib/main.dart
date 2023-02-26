@@ -8,8 +8,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'firebase_options.dart';
 import 'src/app/theme/app_theme.dart';
 import 'src/features/authentication/presentation/login/login_screen.dart';
-import 'src/features/home/home.dart';
-import 'src/features/home/usert.dart';
+import 'src/features/home/presentation/home.dart';
+import 'src/features/home/presentation/usert.dart';
 import 'src/providers/provider_observer.dart';
 import 'src/providers/shared_prefs_provider.dart';
 
