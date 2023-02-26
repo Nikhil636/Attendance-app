@@ -51,17 +51,13 @@ This is an attendance app created using `flutter` and `firebase` where the user'
 ⭐ Go through the contributing guidelines in [CONTRIBUTING](https://github.com/Nikhil636/Attendance-app/blob/main/CONTRIBUTING.md)👩‍💻
 
 ## Project Admin
-
-<table>
-<tr>
-<td align="center"><a href="https://github.com/Nikhil636"><h4 style="color:red;">Nikhil Bhartiya</h4></a></br> 
+<a href="https://github.com/Nikhil636"><h4 style="color:red;">Nikhil Bhartiya</h4></a></br> 
 <a href="mailto:nbhartiya16@gmail.com"><img src="https://custom-icon-badges.demolab.com/badge/Mail-E61B23.svg?logo=mail" width="32px" height="32px"></a>
 <a href="https://www.linkedin.com/in/nikhil636"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" width="32px" height="32px"></a>
 
-   </td>
+   
 
-</tr>
-</table>
+
 
 ## Project Contributors
 
