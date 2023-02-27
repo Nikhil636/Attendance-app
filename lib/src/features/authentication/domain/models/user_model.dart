@@ -3,7 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'user_model.freezed.dart';
 part 'user_model.g.dart';
 
-@freezed
+@Freezed(fromJson: false)
 @JsonSerializable(includeIfNull: false)
 class UserDTO with _$UserDTO {
   const factory UserDTO({

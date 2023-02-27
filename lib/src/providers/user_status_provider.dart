@@ -9,8 +9,8 @@ final StateNotifierProvider<UserNotifier, UserDTO?> userNotifierProvider =
   (StateNotifierProviderRef<UserNotifier, UserDTO?> ref) => UserNotifier(),
 );
 
-class UserNotifier extends StateNotifier<UserDTO?> {
-  UserNotifier() : super(null);
+class UserNotifier extends StateNotifier<UserDTO> {
+  UserNotifier() : super(const UserDTO());
 
   UserDTO? get currentUser => state;
 
@@ -23,7 +23,7 @@ class UserNotifier extends StateNotifier<UserDTO?> {
     String? address,
     String? profilePicLink,
   }) {
-    state = state?.copyWith(
+    state = state.copyWith(
       employeeId: employeeId,
       firstName: firstName,
       lastName: lastName,
@@ -34,12 +34,24 @@ class UserNotifier extends StateNotifier<UserDTO?> {
     );
   }
 
-  set setUser(UserDTO user) {
+  void updateLocation(double lat, double long) {
+    state = state.copyWith(lat: lat, long: long);
+  }
+
+  set user(UserDTO user) {
     state = user;
   }
 
   void clearUser() {
-    state = null;
+    state = const UserDTO();
+  }
+
+  @override
+  bool updateShouldNotify(UserDTO old, UserDTO current) {
+    if (!mounted) {
+      return false;
+    }
+    return super.updateShouldNotify(old, current);
   }
 
   @override

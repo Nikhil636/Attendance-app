@@ -3,6 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 import '../app/providers/qr_providers.dart';
+import '../domain/qr_state.dart';
 
 class QrScannerScreen extends ConsumerWidget {
   QrScannerScreen({Key? key}) : super(key: key);
@@ -10,6 +11,7 @@ class QrScannerScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    QrState controller = ref.watch(qrScreenControllerProvider);
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: SafeArea(
@@ -73,35 +75,35 @@ class QrScannerScreen extends ConsumerWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: <Widget>[
                         Flexible(
-                          child: ref.watch(qrScreenControllerProvider).when(
-                                initial: () => const Text('Scan your QR Code'),
-                                scanning: () => const Text('Scanning...'),
-                                loaded: (Barcode data) {
-                                  if (data.code == null) {
-                                    return const Text('No QR Code Found');
-                                  }
-                                  return Text(data.code!);
-                                },
-                                error: (String? error) {
-                                  return const Text('Couldn\'t scan QR Code');
-                                },
-                              ),
+                          child: controller.when(
+                            initial: () => const Text('Scan your QR Code'),
+                            scanning: () => const Text('Scanning...'),
+                            loaded: (Barcode data) {
+                              if (data.code == null) {
+                                return const Text('No QR Code Found');
+                              }
+                              return Text(data.code!);
+                            },
+                            error: (String? error) {
+                              return const Text('Couldn\'t scan QR Code');
+                            },
+                          ),
                         ),
-                        ref.watch(qrScreenControllerProvider).when(
-                              initial: () => const Icon(Icons.qr_code_scanner),
-                              scanning: () => const Icon(Icons.qr_code_scanner),
-                              loaded: (Barcode data) {
-                                return GestureDetector(
-                                  onTap: () => ref
-                                      .read(qrScreenControllerProvider.notifier)
-                                      .resumeCamera(),
-                                  child: const Icon(Icons.refresh_rounded),
-                                );
-                              },
-                              error: (String? error) {
-                                return const Icon(Icons.error);
-                              },
-                            ),
+                        controller.when(
+                          initial: () => const Icon(Icons.qr_code_scanner),
+                          scanning: () => const Icon(Icons.qr_code_scanner),
+                          loaded: (Barcode data) {
+                            return GestureDetector(
+                              onTap: () => ref
+                                  .read(qrScreenControllerProvider.notifier)
+                                  .resumeCamera(),
+                              child: const Icon(Icons.refresh_rounded),
+                            );
+                          },
+                          error: (String? error) {
+                            return const Icon(Icons.error);
+                          },
+                        ),
                       ],
                     ),
                   ),

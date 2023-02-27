@@ -25,7 +25,9 @@ final StreamProvider<User?> authStateProvider = StreamProvider<User?>(
 final AutoDisposeStateNotifierProvider<SignUpController, SignUpState>
     signUpControllerProvider =
     StateNotifierProvider.autoDispose<SignUpController, SignUpState>(
-        name: 'signUpControllerProvider', SignUpController.new);
+  name: 'signUpControllerProvider',
+  SignUpController.new,
+);
 
 /// Provider for the password visibility state
 final AutoDisposeNotifierProvider<PasswordFieldNotifier, bool>

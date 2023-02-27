@@ -41,19 +41,6 @@ Map<String, dynamic> _$UserDTOToJson(UserDTO instance) {
   return val;
 }
 
-_$_UserDTO _$$_UserDTOFromJson(Map<String, dynamic> json) => _$_UserDTO(
-      employeeId: json['employeeId'] as String?,
-      firstName: json['firstName'] as String?,
-      lastName: json['lastName'] as String?,
-      birthDate: json['birthDate'] as String?,
-      id: json['id'] as String?,
-      address: json['address'] as String?,
-      profilePicLink: json['profilePicLink'] as String?,
-      lat: (json['lat'] as num?)?.toDouble() ?? 0,
-      long: (json['long'] as num?)?.toDouble() ?? 0,
-      canEdit: json['canEdit'] as bool? ?? false,
-    );
-
 Map<String, dynamic> _$$_UserDTOToJson(_$_UserDTO instance) {
   final val = <String, dynamic>{};
 

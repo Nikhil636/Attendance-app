@@ -61,7 +61,8 @@ class _HomeScreenState extends State<HomeScreen> {
         .doc('Rf9LKIsunYRsAt9PcEA4')
         .get();
     setState(() {
-      User.profilePicLink = doc['profilePic'] as String;
+      //TODO: change this later as this is throwing an error due to non-existent profile picture
+      // User.profilePicLink = doc['profilePic'] as String;
     });
   }
 
@@ -71,7 +72,8 @@ class _HomeScreenState extends State<HomeScreen> {
         .where('Id', isEqualTo: User.employeeId)
         .get();
     setState(() {
-      User.id = snap.docs[0].id;
+      //TODO: change this later as this is throwing an error
+      // User.id = snap.docs[0].id;
     });
   }
 

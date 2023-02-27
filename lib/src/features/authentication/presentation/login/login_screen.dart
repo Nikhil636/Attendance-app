@@ -8,7 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../../shared/loader_dialog.dart';
 import '../../../../app/constants/assets.gen.dart';
-import '../../../home/home.dart';
+import '../../../home/presentation/home.dart';
 import '../../app/providers/auth_providers.dart';
 import '../../domain/state/login_state.dart';
 import '../signup/sign_up_screen.dart';

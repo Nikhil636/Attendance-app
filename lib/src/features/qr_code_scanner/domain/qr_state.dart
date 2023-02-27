@@ -3,6 +3,7 @@ import 'package:qr_code_scanner/qr_code_scanner.dart' show Barcode;
 
 part 'qr_state.freezed.dart';
 
+
 @freezed
 class QrState with _$QrState {
   const factory QrState.initial() = _Initial;
