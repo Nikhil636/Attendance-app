@@ -46,9 +46,29 @@ This is an attendance app created using `flutter` and `firebase` where the user'
 
 
 ---
+
+
+⭐ Go through the contributing guidelines in [CONTRIBUTING](https://github.com/Nikhil636/Attendance-app/blob/main/CONTRIBUTING.md)👩‍💻
+
+## Project Admin
+<table>
+<tr>
+<td align="center"><a href="https://github.com/Nikhil636"><img src="https://avatars.githubusercontent.com/u/95742951?v=4" width=150px height=150px /></a></br> <h4 style="color:red;">Nikhil Bhartiya</h4></a>
+<a target="_blank"href="https://www.linkedin.com/in/nikhil636"><img src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white" /></a>&nbsp;&nbsp;&nbsp;&nbsp;
+ <a href="mailto:nbhartiya16@gmail.com"><img src="https://img.shields.io/badge/gmail-%23D14836.svg?&style=for-the-badge&logo=gmail&logoColor=white" /></a>&nbsp;&nbsp;&nbsp;&nbsp;
+   </td>
+
+</tr>
+</table>
+
+
+## Project Contributors
+
+<a href="https://github.com/Nikhil636/Attendance-app/graphs/contributors">
+<img src="https://contrib.rocks/image?repo=Nikhil636/Attendance-app" />
+</a>
 <div align="center">
     <h3>Don't forget to ⭐ this repo</h3>
     <h5>Building with the COMMUNITY for the COMMUNITY ❤️</h5>
 </div>
 
-⭐ Go through the contributing guidelines in [CONTRIBUTING](https://github.com/Nikhil636/Attendance-app/blob/main/CONTRIBUTING.md)👩‍💻
