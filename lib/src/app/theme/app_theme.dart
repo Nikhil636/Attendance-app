@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -24,6 +25,13 @@ class AppTheme {
         fontSize: 16,
         color: Colors.black,
         fontWeight: FontWeight.w400,
+      ),
+    ),
+    appBarTheme: const AppBarTheme(
+      elevation: 0,
+      systemOverlayStyle: SystemUiOverlayStyle(
+        statusBarColor: Color.fromRGBO(2, 64, 116, 1),
+        statusBarIconBrightness: Brightness.light,
       ),
     ),
     textTheme: GoogleFonts.anekDevanagariTextTheme().copyWith(

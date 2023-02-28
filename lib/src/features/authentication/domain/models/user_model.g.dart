@@ -8,10 +8,11 @@ part of 'user_model.dart';
 
 UserDTO _$UserDTOFromJson(Map<String, dynamic> json) => UserDTO(
       employeeId: json['employeeId'] as String?,
-      firstName: json['firstName'] as String?,
-      lastName: json['lastName'] as String?,
+      userType: $enumDecode(_$UserTypeEnumMap, json['userType']),
+      uID: json['uID'] as String?,
+      email: json['email'] as String?,
+      fullName: json['fullName'] as String?,
       birthDate: json['birthDate'] as String?,
-      id: json['id'] as String?,
       address: json['address'] as String?,
       profilePicLink: json['profilePicLink'] as String?,
       lat: (json['lat'] as num).toDouble(),
@@ -29,10 +30,11 @@ Map<String, dynamic> _$UserDTOToJson(UserDTO instance) {
   }
 
   writeNotNull('employeeId', instance.employeeId);
-  writeNotNull('firstName', instance.firstName);
-  writeNotNull('lastName', instance.lastName);
+  val['userType'] = _$UserTypeEnumMap[instance.userType]!;
+  writeNotNull('uID', instance.uID);
+  writeNotNull('email', instance.email);
+  writeNotNull('fullName', instance.fullName);
   writeNotNull('birthDate', instance.birthDate);
-  writeNotNull('id', instance.id);
   writeNotNull('address', instance.address);
   writeNotNull('profilePicLink', instance.profilePicLink);
   val['lat'] = instance.lat;
@@ -40,6 +42,11 @@ Map<String, dynamic> _$UserDTOToJson(UserDTO instance) {
   val['canEdit'] = instance.canEdit;
   return val;
 }
+
+const _$UserTypeEnumMap = {
+  UserType.admin: 'admin',
+  UserType.employee: 'employee',
+};
 
 Map<String, dynamic> _$$_UserDTOToJson(_$_UserDTO instance) {
   final val = <String, dynamic>{};
@@ -51,10 +58,11 @@ Map<String, dynamic> _$$_UserDTOToJson(_$_UserDTO instance) {
   }
 
   writeNotNull('employeeId', instance.employeeId);
-  writeNotNull('firstName', instance.firstName);
-  writeNotNull('lastName', instance.lastName);
+  val['userType'] = _$UserTypeEnumMap[instance.userType]!;
+  writeNotNull('uID', instance.uID);
+  writeNotNull('email', instance.email);
+  writeNotNull('fullName', instance.fullName);
   writeNotNull('birthDate', instance.birthDate);
-  writeNotNull('id', instance.id);
   writeNotNull('address', instance.address);
   writeNotNull('profilePicLink', instance.profilePicLink);
   val['lat'] = instance.lat;

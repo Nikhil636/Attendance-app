@@ -16,19 +16,17 @@ class UserNotifier extends StateNotifier<UserDTO> {
 
   void setUserProperties({
     String? employeeId,
-    String? firstName,
-    String? lastName,
+    String? fullName,
     String? birthDate,
-    String? id,
+    String? userId,
     String? address,
     String? profilePicLink,
   }) {
     state = state.copyWith(
       employeeId: employeeId,
-      firstName: firstName,
-      lastName: lastName,
+      fullName: fullName,
       birthDate: birthDate,
-      id: id,
+      uID: userId,
       address: address,
       profilePicLink: profilePicLink,
     );
