@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
@@ -10,6 +11,7 @@ import 'src/app/theme/app_theme.dart';
 import 'src/features/authentication/presentation/login/login_screen.dart';
 import 'src/features/home/presentation/home.dart';
 import 'src/features/home/presentation/usert.dart';
+import 'src/providers/firestore_provider.dart';
 import 'src/providers/provider_observer.dart';
 import 'src/providers/shared_prefs_provider.dart';
 
@@ -22,6 +24,7 @@ Future<void> main() async {
       key: const Key('RiverpodProviderScope'),
       overrides: <Override>[
         prefsProvider.overrideWithValue(sharedPreferences),
+        firestoreProvider.overrideWithValue(FirebaseFirestore.instance),
       ],
       observers: <ProviderObserver>[ProviderLogger()],
       child: const MyApp(),
@@ -43,6 +46,7 @@ class MyApp extends ConsumerWidget {
       //Light theme is made as default as of now but later on
       //need to make it dynamic based on user's preference
       themeMode: ThemeMode.light,
+      
       home: const KeyboardVisibilityProvider(child: AuthCheck()),
       localizationsDelegates: const <LocalizationsDelegate<dynamic>>[
         MonthYearPickerLocalizations.delegate,
