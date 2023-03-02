@@ -27,14 +27,24 @@ This is an attendance app created using `flutter` and `firebase` where the user'
 
 <H1>TeckStack Used</H1>
 
+
+|||||
+|:----------------------------------------:|:----------------------------------------:|:-----------------------------------------:|:-----------------------------------------:|
+| <img src="https://github.com/devicons/devicon/blob/master/icons/androidstudio/androidstudio-original.svg" alt="Android" width="50" height="50"/> </a> <a href="https://www.java.com" target="_blank"> | <img src="https://github.com/devicons/devicon/blob/master/icons/flutter/flutter-original.svg" alt="Android" width="50" height="50"/> </a> <a href="https://www.java.com" target="_blank">  | <img src="https://github.com/rahuldkjain/github-profile-readme-generator/blob/master/src/images/icons/MobileAppDevelopment/dart.svg" alt="Android" width="50" height="50"/> </a> <a href="https://www.java.com" target="_blank">  | <img src="https://github.com/get-icon/geticon/raw/master/icons/firebase.svg" alt="Firebase" width="50" height="50"/> </a> <a href="https://www.firebase.com/" target="_blank">  |
+
+
+🔸Android Studio
+
 🔸Flutter
 
-🔸Firebase Authentication
+🔸Dart
+   
+🔸Firebase Authentication & Firestore Database
+   
+🔸Other
 
-🔸Firestore Database
 
-
-## <h1>Screenshots</h1>
+## <h1>📱 Screenshots</h1>
 
    ![06aa49df-4e35-44ba-bab6-ad4c299d (1)](https://user-images.githubusercontent.com/105562767/221190139-c8c6db3e-0e96-4c46-839e-9774633ef2ab.jpg)
     ![06aa49df-4e35-44ba-bab6-ad4c299d](https://user-images.githubusercontent.com/105562767/221190202-5b7678b1-a939-440a-9d7d-d828dda2231b.jpg)
