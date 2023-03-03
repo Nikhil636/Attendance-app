@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class LoaderDialog {
-  //show a lodar dialog
+  //show a loader dialog
   static Future<void> showLoaderDialog(BuildContext context) async {
     await showDialog(
       context: context,
@@ -9,15 +9,19 @@ class LoaderDialog {
       builder: (BuildContext context) {
         return WillPopScope(
           onWillPop: () => Future<bool>.value(false),
-          child: const AlertDialog(
+          child: AlertDialog(
             elevation: 0,
-            content: SizedBox(
-              height: 60,
-              width: 60,
-              child: Center(
-                child: CircularProgressIndicator.adaptive(
-                  valueColor: AlwaysStoppedAnimation<Color>(
-                      Color.fromRGBO(2, 64, 116, 1)),
+            content: Container(
+              padding: EdgeInsets.all(20.0),
+              child: SizedBox(
+                height: 60,
+                width: 60,
+                child: Center(
+                  child: CircularProgressIndicator(
+                    strokeWidth: 4,
+                    valueColor:
+                        AlwaysStoppedAnimation<Color>(Colors.blueAccent),
+                  ),
                 ),
               ),
             ),

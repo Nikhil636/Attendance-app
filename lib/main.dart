@@ -41,12 +41,24 @@ class MyApp extends ConsumerWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Attendance App',
-      theme: themeData.lightTheme,
-      darkTheme: themeData.darkTheme,
-      //Light theme is made as default as of now but later on
-      //need to make it dynamic based on user's preference
-      themeMode: ThemeMode.light,
-      
+      // theme: themeData.lightTheme,
+      // darkTheme: themeData.darkTheme,
+      // //Light theme is made as default as of now but later on
+      // //need to make it dynamic based on user's preference
+      // themeMode: ThemeMode.light,
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        fontFamily: 'Montserrat',
+        textTheme: TextTheme(
+          headline1: TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+          ),
+          bodyText1: TextStyle(
+            fontSize: 16,
+          ),
+        ),
+      ),
       home: const KeyboardVisibilityProvider(child: AuthCheck()),
       localizationsDelegates: const <LocalizationsDelegate<dynamic>>[
         MonthYearPickerLocalizations.delegate,
@@ -90,6 +102,24 @@ class AuthCheckState extends State<AuthCheck> {
 
   @override
   Widget build(BuildContext context) {
-    return userAvailable ? const HomeScreen() : const LoginScreen();
+    return Scaffold(
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              Colors.blue[200]!,
+              Colors.blue[400]!,
+            ],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+        ),
+        child: Center(
+          child: userAvailable
+              ? const HomeScreen()
+              : const LoginScreen(),
+        ),
+      ),
+    );
   }
 }

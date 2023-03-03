@@ -145,7 +145,7 @@ class PasswordFormField extends ConsumerWidget {
   final void Function()? onEditingComplete;
   final ValueChanged<String>? onFieldSubmitted;
   const PasswordFormField({
-    super.key,
+    Key? key,
     this.onEditingComplete,
     required this.textEditingController,
     this.onChanged,
