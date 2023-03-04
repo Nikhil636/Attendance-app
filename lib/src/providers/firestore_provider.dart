@@ -1,8 +1,11 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../app/constants/user_type.dart';
+import '../app/constants/user_role.dart';
+import '../features/authentication/domain/models/user_model.dart';
 
 ///Provider that will be used to provide the firestore instance
 final Provider<FirebaseFirestore> firestoreProvider =
@@ -17,6 +20,7 @@ final Provider<FirestoreService> firestoreServiceProvider =
 });
 
 typedef AdminDataEither = Either<Unit, Map<String, dynamic>>;
+typedef SaveDataEither = Either<Unit, Unit>;
 
 class FirestoreService {
   late final FirebaseFirestore _firestore;
@@ -51,7 +55,7 @@ class FirestoreService {
 
   ///Get the user details from the Admin collection with userid
   Future<AdminDataEither> getAdminDetails(String userId,
-      {UserType type = UserType.admin}) async {
+      {UserRole type = UserRole.Admin}) async {
     try {
       DocumentSnapshot<Map<String, dynamic>> documentSnapshot =
           await _firestore.collection(type.name).doc(userId).get();
@@ -60,6 +64,36 @@ class FirestoreService {
       }
       return left(unit);
     } catch (e) {
+      return left(unit);
+    }
+  }
+
+  ///Set the user details to the Employee collection associated with the userid
+  ///[userId] is the id of the user
+  Future<SaveDataEither> setUserDetails({
+    required String userId,
+    required UserDTO data,
+    UserRole role = UserRole.Employee,
+  }) async {
+    try {
+      await _firestore.collection(role.name).doc(userId).set(data.toJson());
+      log('User details set', name: 'FirestoreService');
+      return right(unit);
+    } catch (e) {
+      log(e.toString(), name: 'FirestoreService');
+      return left(unit);
+    }
+  }
+
+  ///Add a document to the collection type based on the [UserRole]
+  ///[userId] is the id of the user
+  Future<SaveDataEither> addDocument(
+      Map<String, dynamic> doc, UserRole type) async {
+    try {
+      await _firestore.collection(type.name).add(doc);
+      return right(unit);
+    } catch (e) {
+      log(e.toString());
       return left(unit);
     }
   }

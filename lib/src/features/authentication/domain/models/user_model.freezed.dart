@@ -17,15 +17,15 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$UserDTO {
   String? get employeeId => throw _privateConstructorUsedError;
-  UserType get userType => throw _privateConstructorUsedError;
+  UserRole? get userRole => throw _privateConstructorUsedError;
   String? get uID => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
   String? get fullName => throw _privateConstructorUsedError;
   String? get birthDate => throw _privateConstructorUsedError;
   String? get address => throw _privateConstructorUsedError;
   String? get profilePicLink => throw _privateConstructorUsedError;
-  double get lat => throw _privateConstructorUsedError;
-  double get long => throw _privateConstructorUsedError;
+  double? get lat => throw _privateConstructorUsedError;
+  double? get long => throw _privateConstructorUsedError;
   bool get canEdit => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -40,15 +40,15 @@ abstract class $UserDTOCopyWith<$Res> {
   @useResult
   $Res call(
       {String? employeeId,
-      UserType userType,
+      UserRole? userRole,
       String? uID,
       String? email,
       String? fullName,
       String? birthDate,
       String? address,
       String? profilePicLink,
-      double lat,
-      double long,
+      double? lat,
+      double? long,
       bool canEdit});
 }
 
@@ -66,15 +66,15 @@ class _$UserDTOCopyWithImpl<$Res, $Val extends UserDTO>
   @override
   $Res call({
     Object? employeeId = freezed,
-    Object? userType = null,
+    Object? userRole = freezed,
     Object? uID = freezed,
     Object? email = freezed,
     Object? fullName = freezed,
     Object? birthDate = freezed,
     Object? address = freezed,
     Object? profilePicLink = freezed,
-    Object? lat = null,
-    Object? long = null,
+    Object? lat = freezed,
+    Object? long = freezed,
     Object? canEdit = null,
   }) {
     return _then(_value.copyWith(
@@ -82,10 +82,10 @@ class _$UserDTOCopyWithImpl<$Res, $Val extends UserDTO>
           ? _value.employeeId
           : employeeId // ignore: cast_nullable_to_non_nullable
               as String?,
-      userType: null == userType
-          ? _value.userType
-          : userType // ignore: cast_nullable_to_non_nullable
-              as UserType,
+      userRole: freezed == userRole
+          ? _value.userRole
+          : userRole // ignore: cast_nullable_to_non_nullable
+              as UserRole?,
       uID: freezed == uID
           ? _value.uID
           : uID // ignore: cast_nullable_to_non_nullable
@@ -110,14 +110,14 @@ class _$UserDTOCopyWithImpl<$Res, $Val extends UserDTO>
           ? _value.profilePicLink
           : profilePicLink // ignore: cast_nullable_to_non_nullable
               as String?,
-      lat: null == lat
+      lat: freezed == lat
           ? _value.lat
           : lat // ignore: cast_nullable_to_non_nullable
-              as double,
-      long: null == long
+              as double?,
+      long: freezed == long
           ? _value.long
           : long // ignore: cast_nullable_to_non_nullable
-              as double,
+              as double?,
       canEdit: null == canEdit
           ? _value.canEdit
           : canEdit // ignore: cast_nullable_to_non_nullable
@@ -135,15 +135,15 @@ abstract class _$$_UserDTOCopyWith<$Res> implements $UserDTOCopyWith<$Res> {
   @useResult
   $Res call(
       {String? employeeId,
-      UserType userType,
+      UserRole? userRole,
       String? uID,
       String? email,
       String? fullName,
       String? birthDate,
       String? address,
       String? profilePicLink,
-      double lat,
-      double long,
+      double? lat,
+      double? long,
       bool canEdit});
 }
 
@@ -158,15 +158,15 @@ class __$$_UserDTOCopyWithImpl<$Res>
   @override
   $Res call({
     Object? employeeId = freezed,
-    Object? userType = null,
+    Object? userRole = freezed,
     Object? uID = freezed,
     Object? email = freezed,
     Object? fullName = freezed,
     Object? birthDate = freezed,
     Object? address = freezed,
     Object? profilePicLink = freezed,
-    Object? lat = null,
-    Object? long = null,
+    Object? lat = freezed,
+    Object? long = freezed,
     Object? canEdit = null,
   }) {
     return _then(_$_UserDTO(
@@ -174,10 +174,10 @@ class __$$_UserDTOCopyWithImpl<$Res>
           ? _value.employeeId
           : employeeId // ignore: cast_nullable_to_non_nullable
               as String?,
-      userType: null == userType
-          ? _value.userType
-          : userType // ignore: cast_nullable_to_non_nullable
-              as UserType,
+      userRole: freezed == userRole
+          ? _value.userRole
+          : userRole // ignore: cast_nullable_to_non_nullable
+              as UserRole?,
       uID: freezed == uID
           ? _value.uID
           : uID // ignore: cast_nullable_to_non_nullable
@@ -202,14 +202,14 @@ class __$$_UserDTOCopyWithImpl<$Res>
           ? _value.profilePicLink
           : profilePicLink // ignore: cast_nullable_to_non_nullable
               as String?,
-      lat: null == lat
+      lat: freezed == lat
           ? _value.lat
           : lat // ignore: cast_nullable_to_non_nullable
-              as double,
-      long: null == long
+              as double?,
+      long: freezed == long
           ? _value.long
           : long // ignore: cast_nullable_to_non_nullable
-              as double,
+              as double?,
       canEdit: null == canEdit
           ? _value.canEdit
           : canEdit // ignore: cast_nullable_to_non_nullable
@@ -223,22 +223,21 @@ class __$$_UserDTOCopyWithImpl<$Res>
 class _$_UserDTO implements _UserDTO {
   const _$_UserDTO(
       {this.employeeId,
-      this.userType = UserType.employee,
+      this.userRole,
       this.uID,
       this.email,
       this.fullName,
       this.birthDate,
       this.address,
       this.profilePicLink,
-      this.lat = 0,
-      this.long = 0,
+      this.lat,
+      this.long,
       this.canEdit = false});
 
   @override
   final String? employeeId;
   @override
-  @JsonKey()
-  final UserType userType;
+  final UserRole? userRole;
   @override
   final String? uID;
   @override
@@ -252,18 +251,16 @@ class _$_UserDTO implements _UserDTO {
   @override
   final String? profilePicLink;
   @override
-  @JsonKey()
-  final double lat;
+  final double? lat;
   @override
-  @JsonKey()
-  final double long;
+  final double? long;
   @override
   @JsonKey()
   final bool canEdit;
 
   @override
   String toString() {
-    return 'UserDTO(employeeId: $employeeId, userType: $userType, uID: $uID, email: $email, fullName: $fullName, birthDate: $birthDate, address: $address, profilePicLink: $profilePicLink, lat: $lat, long: $long, canEdit: $canEdit)';
+    return 'UserDTO(employeeId: $employeeId, userRole: $userRole, uID: $uID, email: $email, fullName: $fullName, birthDate: $birthDate, address: $address, profilePicLink: $profilePicLink, lat: $lat, long: $long, canEdit: $canEdit)';
   }
 
   @override
@@ -273,8 +270,8 @@ class _$_UserDTO implements _UserDTO {
             other is _$_UserDTO &&
             (identical(other.employeeId, employeeId) ||
                 other.employeeId == employeeId) &&
-            (identical(other.userType, userType) ||
-                other.userType == userType) &&
+            (identical(other.userRole, userRole) ||
+                other.userRole == userRole) &&
             (identical(other.uID, uID) || other.uID == uID) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.fullName, fullName) ||
@@ -291,7 +288,7 @@ class _$_UserDTO implements _UserDTO {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, employeeId, userType, uID, email,
+  int get hashCode => Object.hash(runtimeType, employeeId, userRole, uID, email,
       fullName, birthDate, address, profilePicLink, lat, long, canEdit);
 
   @JsonKey(ignore: true)
@@ -311,21 +308,21 @@ class _$_UserDTO implements _UserDTO {
 abstract class _UserDTO implements UserDTO {
   const factory _UserDTO(
       {final String? employeeId,
-      final UserType userType,
+      final UserRole? userRole,
       final String? uID,
       final String? email,
       final String? fullName,
       final String? birthDate,
       final String? address,
       final String? profilePicLink,
-      final double lat,
-      final double long,
+      final double? lat,
+      final double? long,
       final bool canEdit}) = _$_UserDTO;
 
   @override
   String? get employeeId;
   @override
-  UserType get userType;
+  UserRole? get userRole;
   @override
   String? get uID;
   @override
@@ -339,9 +336,9 @@ abstract class _UserDTO implements UserDTO {
   @override
   String? get profilePicLink;
   @override
-  double get lat;
+  double? get lat;
   @override
-  double get long;
+  double? get long;
   @override
   bool get canEdit;
   @override

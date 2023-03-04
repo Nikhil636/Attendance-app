@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../src/features/authentication/app/providers/auth_providers.dart';
 import '../src/utils/textfield_validators.dart';
 
 class NameFormField extends StatelessWidget {
@@ -31,12 +29,12 @@ class NameFormField extends StatelessWidget {
       autovalidateMode: autovalidateMode ?? AutovalidateMode.onUserInteraction,
       textInputAction: textInputAction ?? TextInputAction.next,
       onFieldSubmitted: onFieldSubmitted,
-      inputFormatters: <FilteringTextInputFormatter>[
+      inputFormatters: <TextInputFormatter>[
         FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z\s]')),
+        LengthLimitingTextInputFormatter(25)
       ],
       autofillHints: const <String>[AutofillHints.name],
       autocorrect: true,
-      maxLength: 25,
       validator: TextFieldValidators.nameValidator,
       onChanged: onChanged,
       keyboardType: TextInputType.name,
@@ -136,35 +134,38 @@ class EmailFormField extends StatelessWidget {
   }
 }
 
-class PasswordFormField extends ConsumerWidget {
-  final TextEditingController textEditingController;
+class PasswordFormField extends StatelessWidget {
+  final TextEditingController? textEditingController;
   final ValueChanged<String>? onChanged;
   final TextInputAction? textInputAction;
+  final Widget? suffixIcon;
+  final bool obscureText;
   final bool? isConfirmPassword;
   final String? Function(String?)? validator;
   final void Function()? onEditingComplete;
   final ValueChanged<String>? onFieldSubmitted;
   const PasswordFormField({
-    super.key,
+    Key? key,
     this.onEditingComplete,
-    required this.textEditingController,
+    this.suffixIcon,
+    this.obscureText = false,
+    this.textEditingController,
     this.onChanged,
     this.textInputAction = TextInputAction.next,
     this.isConfirmPassword = false,
     this.validator,
     this.onFieldSubmitted,
-  });
+  }) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    bool isVisible = ref.watch(passwordVisibiltyProvider);
+  Widget build(BuildContext context) {
     return TextFormField(
       controller: textEditingController,
       onChanged: onChanged,
       onEditingComplete: onEditingComplete,
       onFieldSubmitted: onFieldSubmitted,
       validator: validator ?? TextFieldValidators.passwordValidator,
-      obscureText: isVisible,
+      obscureText: obscureText,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       enableSuggestions: true,
       textInputAction: textInputAction,
@@ -179,12 +180,7 @@ class PasswordFormField extends ConsumerWidget {
         floatingLabelBehavior: FloatingLabelBehavior.auto,
         floatingLabelAlignment: FloatingLabelAlignment.start,
         prefixIcon: const Icon(Icons.lock),
-        suffixIcon: GestureDetector(
-          onTap: () => ref.read(passwordVisibiltyProvider.notifier).toggle(),
-          child: isVisible
-              ? const Icon(Icons.visibility)
-              : const Icon(Icons.visibility_off),
-        ),
+        suffixIcon: suffixIcon,
         contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
         filled: true,
         errorMaxLines: 2,

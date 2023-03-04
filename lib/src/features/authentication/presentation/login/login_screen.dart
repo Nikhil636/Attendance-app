@@ -102,27 +102,25 @@ class _LoginScreenState extends ConsumerState<LoginScreen>
             Padding(
               padding: const EdgeInsets.only(
                   top: 15, left: 10, right: 10, bottom: 10),
-              child: Builder(builder: (BuildContext context) {
-                return SegmentedTabControl(
-                  radius: const Radius.circular(10),
-                  controller: tabController,
-                  backgroundColor: Colors.grey.shade300,
-                  indicatorColor: const Color.fromRGBO(2, 64, 116, 1),
-                  tabTextColor: Colors.black45,
-                  selectedTabTextColor: Colors.white,
-                  squeezeIntensity: 2,
-                  height: size.height * 0.06,
-                  tabPadding: const EdgeInsets.symmetric(horizontal: 8),
-                  textStyle: Theme.of(context)
-                      .textTheme
-                      .labelSmall
-                      ?.copyWith(fontSize: 12),
-                  tabs: const <SegmentTab>[
-                    SegmentTab(label: 'EMPLOYEE'),
-                    SegmentTab(label: 'ADMIN'),
-                  ],
-                );
-              }),
+              child: SegmentedTabControl(
+                radius: const Radius.circular(10),
+                controller: tabController,
+                backgroundColor: Colors.grey.shade300,
+                indicatorColor: const Color.fromRGBO(2, 64, 116, 1),
+                tabTextColor: Colors.black45,
+                selectedTabTextColor: Colors.white,
+                squeezeIntensity: 2,
+                height: size.height * 0.06,
+                tabPadding: const EdgeInsets.symmetric(horizontal: 8),
+                textStyle: Theme.of(context)
+                    .textTheme
+                    .labelSmall
+                    ?.copyWith(fontSize: 12),
+                tabs: const <SegmentTab>[
+                  SegmentTab(label: 'EMPLOYEE'),
+                  SegmentTab(label: 'ADMIN'),
+                ],
+              ),
             ),
             Expanded(
               flex: 5,

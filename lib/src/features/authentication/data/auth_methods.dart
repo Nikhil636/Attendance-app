@@ -4,7 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 typedef SignOutEither = Either<Unit, Unit>;
 typedef CredentialEither = Either<String, UserCredential>;
 typedef SignInEither = Either<String, User>;
-typedef SignUpEither = Either<String, Unit>;
+typedef SignUpEither = Either<String, UserCredential>;
 
 abstract class AuthRepositoryImpl {
   /// Stream of auth state changes

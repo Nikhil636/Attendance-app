@@ -115,8 +115,10 @@ class AuthRepository implements AuthRepositoryImpl {
     try {
       UserCredential user = await _firebaseAuth.createUserWithEmailAndPassword(
           email: email, password: password);
-      log(user.user?.uid ?? 'No user id found');
-      return right(unit);
+      if (user.user?.uid != null) {
+        return right(user);
+      }
+      return left('This operation could\'nt be completed successfully.');
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         return left('The password provided is too weak.');
@@ -142,6 +144,4 @@ class AuthRepository implements AuthRepositoryImpl {
       return <String>[];
     }
   }
-  
-  
 }

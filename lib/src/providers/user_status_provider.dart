@@ -1,36 +1,40 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../app/constants/user_role.dart';
 import '../features/authentication/domain/models/user_model.dart';
 
 /// Provider for the user notifier
-final StateNotifierProvider<UserNotifier, UserDTO?> userNotifierProvider =
-    StateNotifierProvider<UserNotifier, UserDTO?>(
+final StateNotifierProvider<UserNotifier, UserDTO> userNotifierProvider =
+    StateNotifierProvider<UserNotifier, UserDTO>(
   name: 'userNotifierProvider',
-  (StateNotifierProviderRef<UserNotifier, UserDTO?> ref) => UserNotifier(),
+  (StateNotifierProviderRef<UserNotifier, UserDTO> ref) => UserNotifier(),
 );
 
 class UserNotifier extends StateNotifier<UserDTO> {
   UserNotifier() : super(const UserDTO());
 
-  UserDTO? get currentUser => state;
+  UserDTO get currentUser => state;
 
   void setUserProperties({
     String? employeeId,
     String? fullName,
+    String? email,
+    UserRole? userRole,
     String? birthDate,
     String? userId,
     String? address,
     String? profilePicLink,
-  }) {
-    state = state.copyWith(
-      employeeId: employeeId,
-      fullName: fullName,
-      birthDate: birthDate,
-      uID: userId,
-      address: address,
-      profilePicLink: profilePicLink,
-    );
-  }
+  }) =>
+      state = state.copyWith(
+        employeeId: employeeId,
+        userRole: userRole,
+        email: email,
+        fullName: fullName,
+        birthDate: birthDate,
+        uID: userId,
+        address: address,
+        profilePicLink: profilePicLink,
+      );
 
   void updateLocation(double lat, double long) {
     state = state.copyWith(lat: lat, long: long);
