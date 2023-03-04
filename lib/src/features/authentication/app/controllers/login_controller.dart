@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../../../app/constants/user_type.dart';
+import '../../../../app/constants/user_role.dart';
 import '../../../../providers/firestore_provider.dart';
 import '../../../../providers/user_status_provider.dart';
 import '../../data/auth_methods.dart';
@@ -19,7 +19,7 @@ class LoginController extends StateNotifier<LoginState> {
   Future<void> loginWithEmail({
     required String email,
     required String password,
-    UserType userType = UserType.employee,
+    UserRole userType = UserRole.Employee,
   }) async {
     state = const LoginState.loading();
     SignInEither result = await ref

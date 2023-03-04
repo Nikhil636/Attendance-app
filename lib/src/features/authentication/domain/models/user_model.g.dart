@@ -8,15 +8,15 @@ part of 'user_model.dart';
 
 UserDTO _$UserDTOFromJson(Map<String, dynamic> json) => UserDTO(
       employeeId: json['employeeId'] as String?,
-      userType: $enumDecode(_$UserTypeEnumMap, json['userType']),
+      userRole: $enumDecodeNullable(_$UserRoleEnumMap, json['userRole']),
       uID: json['uID'] as String?,
       email: json['email'] as String?,
       fullName: json['fullName'] as String?,
       birthDate: json['birthDate'] as String?,
       address: json['address'] as String?,
       profilePicLink: json['profilePicLink'] as String?,
-      lat: (json['lat'] as num).toDouble(),
-      long: (json['long'] as num).toDouble(),
+      lat: (json['lat'] as num?)?.toDouble(),
+      long: (json['long'] as num?)?.toDouble(),
       canEdit: json['canEdit'] as bool,
     );
 
@@ -30,22 +30,22 @@ Map<String, dynamic> _$UserDTOToJson(UserDTO instance) {
   }
 
   writeNotNull('employeeId', instance.employeeId);
-  val['userType'] = _$UserTypeEnumMap[instance.userType]!;
+  writeNotNull('userRole', _$UserRoleEnumMap[instance.userRole]);
   writeNotNull('uID', instance.uID);
   writeNotNull('email', instance.email);
   writeNotNull('fullName', instance.fullName);
   writeNotNull('birthDate', instance.birthDate);
   writeNotNull('address', instance.address);
   writeNotNull('profilePicLink', instance.profilePicLink);
-  val['lat'] = instance.lat;
-  val['long'] = instance.long;
+  writeNotNull('lat', instance.lat);
+  writeNotNull('long', instance.long);
   val['canEdit'] = instance.canEdit;
   return val;
 }
 
-const _$UserTypeEnumMap = {
-  UserType.admin: 'admin',
-  UserType.employee: 'employee',
+const _$UserRoleEnumMap = {
+  UserRole.Admin: 'Admin',
+  UserRole.Employee: 'Employee',
 };
 
 Map<String, dynamic> _$$_UserDTOToJson(_$_UserDTO instance) {
@@ -58,15 +58,15 @@ Map<String, dynamic> _$$_UserDTOToJson(_$_UserDTO instance) {
   }
 
   writeNotNull('employeeId', instance.employeeId);
-  val['userType'] = _$UserTypeEnumMap[instance.userType]!;
+  writeNotNull('userRole', _$UserRoleEnumMap[instance.userRole]);
   writeNotNull('uID', instance.uID);
   writeNotNull('email', instance.email);
   writeNotNull('fullName', instance.fullName);
   writeNotNull('birthDate', instance.birthDate);
   writeNotNull('address', instance.address);
   writeNotNull('profilePicLink', instance.profilePicLink);
-  val['lat'] = instance.lat;
-  val['long'] = instance.long;
+  writeNotNull('lat', instance.lat);
+  writeNotNull('long', instance.long);
   val['canEdit'] = instance.canEdit;
   return val;
 }

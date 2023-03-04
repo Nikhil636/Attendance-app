@@ -5,7 +5,6 @@ import '../../data/auth_repository.dart';
 import '../../domain/state/login_state.dart';
 import '../../domain/state/sign_up_state.dart';
 import '../controllers/login_controller.dart';
-import '../controllers/password_notifier.dart';
 import '../controllers/signup_controller.dart';
 
 /// Provider for the authentication repository
@@ -27,14 +26,6 @@ final AutoDisposeStateNotifierProvider<SignUpController, SignUpState>
     StateNotifierProvider.autoDispose<SignUpController, SignUpState>(
   name: 'signUpControllerProvider',
   SignUpController.new,
-);
-
-/// Provider for the password visibility state
-final AutoDisposeNotifierProvider<PasswordFieldNotifier, bool>
-    passwordVisibiltyProvider =
-    NotifierProvider.autoDispose<PasswordFieldNotifier, bool>(
-  name: 'passwordVisibiltyProvider',
-  PasswordFieldNotifier.new,
 );
 
 ///Provider for login screen
