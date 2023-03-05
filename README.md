@@ -1,4 +1,27 @@
 # <p align="center">𝑨𝒕𝒕𝒆𝒏𝒅𝒂𝒏𝒄𝒆 𝑨𝒑𝒑✨</P>
+
+ <div align="center">
+ <p>
+
+[![Open Source Love svg1](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
+![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat)
+![Visitors](https://api.visitorbadge.io/api/visitors?path=Nikhil636%2FAttendance-app%20&countColor=%23263759&style=flat)
+![GitHub forks](https://img.shields.io/github/forks/Nikhil636/Attendance-app)
+![GitHub Repo stars](https://img.shields.io/github/stars/Nikhil636/Attendance-app)
+![GitHub contributors](https://img.shields.io/github/contributors/Nikhil636/Attendance-app)
+![GitHub last commit](https://img.shields.io/github/last-commit/Nikhil636/Attendance-app)
+
+![GitHub repo size](https://img.shields.io/github/repo-size/Nikhil636/Attendance-app)
+
+![Github](https://img.shields.io/github/license/Nikhil636/Attendance-app)
+![GitHub issues](https://img.shields.io/github/issues/Nikhil636/Attendance-app)
+![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/Nikhil636/Attendance-app)
+![GitHub pull requests](https://img.shields.io/github/issues-pr/Nikhil636/Attendance-app)
+![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/Nikhil636/Attendance-app)
+ </p>
+ </div>
+
+
 ## What is this 𝑨𝒕𝒕𝒆𝒏𝒅𝒂𝒏𝒄𝒆 𝑨𝒑𝒑?
 This is an attendance app created using `flutter` and `firebase` where the user's check-in and check-out time gets stored in firebase database.
 
