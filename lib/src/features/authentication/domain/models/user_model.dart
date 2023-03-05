@@ -5,8 +5,8 @@ import '../../../../app/constants/user_role.dart';
 part 'user_model.freezed.dart';
 part 'user_model.g.dart';
 
-@Freezed(fromJson: false)
-@JsonSerializable(includeIfNull: false)
+@freezed
+@JsonSerializable()
 class UserDTO with _$UserDTO {
   const factory UserDTO({
     String? employeeId,
