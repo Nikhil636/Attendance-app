@@ -2,7 +2,24 @@
 targets:
   $default:
     builders:
-      json_serializable|json_serializable:
+      json_serializable:
         options:
-          explicit_to_json: true
+          any_map: false
+          checked: false
+          create_factory: true
+          create_field_map: false
+          disallow_unrecognized_keys: false
+          explicit_to_json: false
+          generic_argument_factories: false
+          ignore_unannotated: false
           include_if_null: false
+      freezed:
+        generate_for:
+          - lib/**.dart
+        options:
+          generate_copy_with: true
+          generate_equals: true
+          generate_hashcode: true
+          generate_to_string: true
+          ignore_unannotated: false
+          from_json: false
