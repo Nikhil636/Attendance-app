@@ -67,7 +67,7 @@ This is an attendance app created using `flutter` and `firebase` where the user'
      <td>Employee Login</td>
   </tr>
   <tr>
-    <td><img src="![o1](https://user-images.githubusercontent.com/85816852/225295703-239eaf46-3f5f-467d-bda4-edb6cc882a81.jpg)" width=270 height=480></td>
+    <td><img src="Screenshot/o1.jpg" width=270 height=480></td>
     <td><img src="![o2](https://user-images.githubusercontent.com/85816852/225295813-67581ac9-7299-4f18-b22e-1ab84774d095.jpg)" width=270 height=480></td>
     <td><img src="![o3](https://user-images.githubusercontent.com/85816852/225295840-cb62df1d-2962-457d-ae63-e65a9d26eb12.jpg)" width=270 height=480></td>
   </tr>
