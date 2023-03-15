@@ -68,14 +68,14 @@ This is an attendance app created using `flutter` and `firebase` where the user'
   </tr>
   <tr>
     <td><img src="Screenshot/o1.jpg" width=270 height=480></td>
-    <td><img src="![o2](https://user-images.githubusercontent.com/85816852/225295813-67581ac9-7299-4f18-b22e-1ab84774d095.jpg)" width=270 height=480></td>
+    <td><img src="Screenshot/o2.jpg" width=270 height=480></td>
     <td><img src="![o3](https://user-images.githubusercontent.com/85816852/225295840-cb62df1d-2962-457d-ae63-e65a9d26eb12.jpg)" width=270 height=480></td>
   </tr>
  </table>
  
 
 
-
+![o2](https://user-images.githubusercontent.com/85816852/225295813-67581ac9-7299-4f18-b22e-1ab84774d095.jpg)
 ![o4](https://user-images.githubusercontent.com/85816852/225295835-4f231b19-72f9-45b1-bf86-2fbfcd749007.jpg)
 ![o5](https://user-images.githubusercontent.com/85816852/225295829-62bfc911-2f48-4bde-ab65-423ce09e1d4d.jpg)
 ![o6](https://user-images.githubusercontent.com/85816852/225295826-18d237d2-e8b1-465d-84ea-f84274fbc9d1.jpg)
