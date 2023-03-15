@@ -59,17 +59,29 @@ This is an attendance app created using `flutter` and `firebase` where the user'
 
 ## <h1>Screenshots</h1>
 
-<div>
+
+<table>
+  <tr>
+    <td>Signup Page</td>
+     <td>Admin Login</td>
+     <td>Employee Login</td>
+  </tr>
+  <tr>
+    <td><img src="![o1](https://user-images.githubusercontent.com/85816852/225295703-239eaf46-3f5f-467d-bda4-edb6cc882a81.jpg)" width=270 height=480></td>
+    <td><img src="![o2](https://user-images.githubusercontent.com/85816852/225295813-67581ac9-7299-4f18-b22e-1ab84774d095.jpg)" width=270 height=480></td>
+    <td><img src="![o3](https://user-images.githubusercontent.com/85816852/225295840-cb62df1d-2962-457d-ae63-e65a9d26eb12.jpg)" width=270 height=480></td>
+  </tr>
+ </table>
  
-![o1](https://user-images.githubusercontent.com/85816852/225295703-239eaf46-3f5f-467d-bda4-edb6cc882a81.jpg)
-![o2](https://user-images.githubusercontent.com/85816852/225295813-67581ac9-7299-4f18-b22e-1ab84774d095.jpg)
-![o3](https://user-images.githubusercontent.com/85816852/225295840-cb62df1d-2962-457d-ae63-e65a9d26eb12.jpg)
+
+
+
 ![o4](https://user-images.githubusercontent.com/85816852/225295835-4f231b19-72f9-45b1-bf86-2fbfcd749007.jpg)
 ![o5](https://user-images.githubusercontent.com/85816852/225295829-62bfc911-2f48-4bde-ab65-423ce09e1d4d.jpg)
 ![o6](https://user-images.githubusercontent.com/85816852/225295826-18d237d2-e8b1-465d-84ea-f84274fbc9d1.jpg)
 ![o7](https://user-images.githubusercontent.com/85816852/225295816-bc2708c4-d6a7-45ac-8711-2322b569dbd7.jpg)
 
-</div>
+
 
 
 
