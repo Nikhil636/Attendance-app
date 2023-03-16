@@ -73,19 +73,16 @@ This is an attendance app created using `flutter` and `firebase` where the user'
   </tr>
  </table>
  
-![o1]()
+ <table>
 
-
-![o2](https://user-images.githubusercontent.com/85816852/225295813-67581ac9-7299-4f18-b22e-1ab84774d095.jpg)
-![o4](https://user-images.githubusercontent.com/85816852/225295835-4f231b19-72f9-45b1-bf86-2fbfcd749007.jpg)
-![o5](https://user-images.githubusercontent.com/85816852/225295829-62bfc911-2f48-4bde-ab65-423ce09e1d4d.jpg)
-![o6](https://user-images.githubusercontent.com/85816852/225295826-18d237d2-e8b1-465d-84ea-f84274fbc9d1.jpg)
-![o7](https://user-images.githubusercontent.com/85816852/225295816-bc2708c4-d6a7-45ac-8711-2322b569dbd7.jpg)
-
-
-
-
-
+  <tr>
+    <td><img src="https://user-images.githubusercontent.com/85816852/225295835-4f231b19-72f9-45b1-bf86-2fbfcd749007.jpg" width=300 height=600></td>
+    <td><img src="https://user-images.githubusercontent.com/85816852/225295829-62bfc911-2f48-4bde-ab65-423ce09e1d4d.jpg" width=300 height=600></td>
+    <td><img src="https://user-images.githubusercontent.com/85816852/225295826-18d237d2-e8b1-465d-84ea-f84274fbc9d1.jpg" width=300 height=600></td>
+    <td><img src="https://user-images.githubusercontent.com/85816852/225295816-bc2708c4-d6a7-45ac-8711-2322b569dbd7.jpg" width=300 height=600></td>
+  </tr>
+ </table>
+ 
 
 ---
 
