@@ -59,14 +59,30 @@ This is an attendance app created using `flutter` and `firebase` where the user'
 
 ## <h1>Screenshots</h1>
 
-   ![06aa49df-4e35-44ba-bab6-ad4c299d (1)](https://user-images.githubusercontent.com/105562767/221190139-c8c6db3e-0e96-4c46-839e-9774633ef2ab.jpg)
-    ![06aa49df-4e35-44ba-bab6-ad4c299d](https://user-images.githubusercontent.com/105562767/221190202-5b7678b1-a939-440a-9d7d-d828dda2231b.jpg)
-    ![8e472b69-2e5e-40da-9e2f-231f573e](https://user-images.githubusercontent.com/105562767/221190231-a7b3232a-2e76-4f68-9441-d0a2a2eb23aa.jpg) 
-    ![c7340fca-3cef-4f27-9410-2ccdd7cb](https://user-images.githubusercontent.com/105562767/221190243-1c050f54-055f-4916-9bb1-67ee4b453322.jpg)
-    ![d5db5492-8ef6-4c00-80ac-2b7d1e4d](https://user-images.githubusercontent.com/105562767/221190257-13a240f4-652c-409b-8d94-bcb55124ba9f.jpg) 
-    ![d34327fa-51b5-43ec-a7ee-5bf3a3b1 (1)](https://user-images.githubusercontent.com/105562767/221190274-4377515f-ef80-4c1e-8712-f6c5d43a328c.jpg)
 
+<table>
+  <tr>
+    <td>Signup Page</td>
+     <td>Admin Login</td>
+     <td>Employee Login</td>
+  </tr>
+  <tr>
+    <td><img src="https://user-images.githubusercontent.com/85816852/225508650-4c3cd68b-69ce-4e36-8971-494d5e23da79.jpg" width=300 height=600></td>
+    <td><img src="https://user-images.githubusercontent.com/85816852/225295813-67581ac9-7299-4f18-b22e-1ab84774d095.jpg" width=300 height=600></td>
+    <td><img src="https://user-images.githubusercontent.com/85816852/225295840-cb62df1d-2962-457d-ae63-e65a9d26eb12.jpg" width=300 height=600></td>
+  </tr>
+ </table>
+ 
+ <table>
 
+  <tr>
+    <td><img src="https://user-images.githubusercontent.com/85816852/225295835-4f231b19-72f9-45b1-bf86-2fbfcd749007.jpg" width=350 height=600></td>
+    <td><img src="https://user-images.githubusercontent.com/85816852/225295829-62bfc911-2f48-4bde-ab65-423ce09e1d4d.jpg" width=350 height=600></td>
+    <td><img src="https://user-images.githubusercontent.com/85816852/225295826-18d237d2-e8b1-465d-84ea-f84274fbc9d1.jpg" width=350 height=600></td>
+    <td><img src="https://user-images.githubusercontent.com/85816852/225295816-bc2708c4-d6a7-45ac-8711-2322b569dbd7.jpg" width=350 height=600></td>
+  </tr>
+ </table>
+ 
 
 ---
 
