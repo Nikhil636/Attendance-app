@@ -69,7 +69,7 @@ This is an attendance app created using `flutter` and `firebase` where the user'
   <tr>
     <td><img src="Screenshot/o1.jpg" width=270 height=480></td>
     <td><img src="Screenshot/o2.jpg" width=270 height=480></td>
-    <td><img src="![o3](https://user-images.githubusercontent.com/85816852/225295840-cb62df1d-2962-457d-ae63-e65a9d26eb12.jpg)" width=270 height=480></td>
+    <td><img src="https://user-images.githubusercontent.com/85816852/225295840-cb62df1d-2962-457d-ae63-e65a9d26eb12.jpg" width=270 height=480></td>
   </tr>
  </table>
  
